@@ -12,7 +12,7 @@ export const navItems: Array<{
     //   link: '/blog',
     // },
     {
-      label: "About",
+      label: "About me",
       link: '/about',
     }
   ];

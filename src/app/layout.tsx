@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider/theme-provider";
+import ThemeProvider from "@/components/theme-provider/theme-provider";
 
 export const metadata: Metadata = {
   title: "Siyu An",
@@ -15,9 +15,8 @@ export default function RootLayout({
   { children: React.ReactNode }
 ) {
   return (
-    <html lang="en" className='scroll-smooth' suppressHydrationWarning={true}>
+    <html lang="en" className='scroll-smooth'>
       <body className="debug-screens scroll-smooth overflow-x-clip" >
-
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

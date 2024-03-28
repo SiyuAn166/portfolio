@@ -1,7 +1,8 @@
+import AboutMe from "@/components/aboutme/aboutme"
 export default function Default(){
     return (
         <div>
-            About Page
+            <AboutMe/>
         </div>
     )
 }
