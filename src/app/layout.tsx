@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "@/components/theme-provider/theme-provider";
+import { url } from "inspector";
 
 export const metadata: Metadata = {
   title: "Siyu An",
@@ -16,7 +17,7 @@ export default function RootLayout({
 ) {
   return (
     <html lang="en" className='scroll-smooth'>
-      <body className="debug-screens scroll-smooth overflow-x-clip" >
+      <body className="debug-screens scroll-smooth overflow-x-clip bg-cover bg-center">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

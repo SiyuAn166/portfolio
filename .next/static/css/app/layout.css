@@ -609,6 +609,9 @@ video {
 .top-full {
   top: 100%;
 }
+.bottom-0 {
+  bottom: 0px;
+}
 .z-10 {
   z-index: 10;
 }
@@ -647,6 +650,9 @@ video {
 }
 .mt-5 {
   margin-top: 1.25rem;
+}
+.mb-60 {
+  margin-bottom: 15rem;
 }
 .flex {
   display: flex;
@@ -716,6 +722,9 @@ video {
 }
 .h-screen {
   height: 100vh;
+}
+.h-0 {
+  height: 0px;
 }
 .min-h-\[calc\(100vh-190px\)\] {
   min-height: calc(100vh - 190px);
@@ -871,6 +880,9 @@ video {
 .gap-5 {
   gap: 1.25rem;
 }
+.gap-1 {
+  gap: 0.25rem;
+}
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.25rem * var(--tw-space-x-reverse));
@@ -970,6 +982,10 @@ video {
 .bg-secondary {
   background-color: hsl(var(--secondary));
 }
+.bg-emerald-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 185 129 / var(--tw-bg-opacity));
+}
 .bg-opacity-70 {
   --tw-bg-opacity: 0.7;
 }
@@ -984,9 +1000,15 @@ video {
 .to-red-500 {
   --tw-gradient-to: #ef4444 var(--tw-gradient-to-position);
 }
+.bg-cover {
+  background-size: cover;
+}
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
+}
+.bg-center {
+  background-position: center;
 }
 .fill-current {
   fill: currentColor;
@@ -1052,6 +1074,10 @@ video {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
 .pl-8 {
   padding-left: 2rem;
 }
@@ -1060,6 +1086,27 @@ video {
 }
 .pt-0 {
   padding-top: 0px;
+}
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+.pb-60 {
+  padding-bottom: 15rem;
+}
+.pb-0 {
+  padding-bottom: 0px;
+}
+.pb-0\.5 {
+  padding-bottom: 0.125rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.text-center {
+  text-align: center;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -1138,6 +1185,14 @@ video {
 }
 .text-secondary-foreground {
   color: hsl(var(--secondary-foreground));
+}
+.text-\[\#41cc92\] {
+  --tw-text-opacity: 1;
+  color: rgb(65 204 146 / var(--tw-text-opacity));
+}
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 .text-opacity-50 {
   --tw-text-opacity: 0.5;
@@ -1233,6 +1288,9 @@ video {
 .duration-700 {
   transition-duration: 700ms;
 }
+.duration-500 {
+  transition-duration: 500ms;
+}
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1269,6 +1327,11 @@ video {
 
 .hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
+}
+
+.hover\:text-sky-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(3 105 161 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {

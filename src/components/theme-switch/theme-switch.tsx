@@ -4,10 +4,14 @@ import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-
+import { useEffect } from "react"
 
 export default function ThemeSwitch() {
     const { theme, setTheme } = useTheme()
+    document.body.style.backgroundAttachment = 'fixed';
+    useEffect(()=>{
+        document.body.style.backgroundImage = theme === 'light' ? 'url(images/bg-light.jpg)' : 'url(images/bg-dark.jpg)'
+    },[theme])
 
     return (
         <Button variant="outline" size="icon" onClick={() => { setTheme(theme === "light" ? "dark" : "light") }}>

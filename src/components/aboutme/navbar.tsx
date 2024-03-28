@@ -17,7 +17,7 @@ export default function NavBar() {
 
             sectionElements.forEach((section) => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= 100 && rect.bottom >= 200) {
+                if (rect.top <= 100 && rect.bottom >= 100) {
                     activeSectionId = section.id;
                 }
             });
