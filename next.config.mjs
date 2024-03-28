@@ -2,7 +2,11 @@
 const nextConfig = {
     reactStrictMode: true,
     output: "export", // generate static resources into out folder in the base directory,
-    basePath: "portfolio"
+    images: {
+        loader: 'akamai',
+        path: '',
+    },
+    assetPrefix: './',
 };
 
 export default nextConfig;
