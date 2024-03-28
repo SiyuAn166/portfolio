@@ -14,15 +14,17 @@ export default function MainNav() {
                 <div className="w-full flex justify-end items-center space-x-4">
                     {navItems.map((item) => (
                         <Button variant="link" asChild key={item.link}>
-                            <Link href={item.link} key={item.link}>
+                            <Link href={item.link} key={item.link} className="text-sm hover:text-cyan-500">
                                 {item.label}
                             </Link>
                         </Button>
                     ))}
-                    <Link href={githubPath} target="_blank" className="px-2 md:px-4">
+                    <Link href={githubPath} target="_blank" 
+                    className="px-2 md:px-4 transition duration-600 ease-in-out hover:text-cyan-500 ">
                         <FaGithub />
                     </Link>
-                    <Link href={linkedInPath} target="_blank" className="px-2 md:px-4">
+                    <Link href={linkedInPath} target="_blank" 
+                    className="px-2 md:px-4 transition duration-600 ease-in-out hover:text-cyan-500">
                         <FaLinkedin />
                     </Link>
                     <ThemeSwitch />

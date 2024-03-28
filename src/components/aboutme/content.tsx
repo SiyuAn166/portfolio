@@ -16,8 +16,11 @@ export default function AboutMeContent() {
     return (
         <>
             <section id="experience" key="#experience" className="grid place-items-center mb-60">
-                {experienceData.map(d => (
-                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 drop-shadow-lg" key={Math.random().toString(36).substring(7)}>
+                {experienceData.map((d, index) => (
+                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 bg-transparent border-none shadow-transparent
+                    transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
+                    key={d.role + index}
+                    >
                         <CardHeader>
                             <CardTitle>{d.role}</CardTitle>
                             <CardDescription>{d.time}</CardDescription>
@@ -25,9 +28,9 @@ export default function AboutMeContent() {
                         <CardContent>
                             <p>{d.desc}</p>
                         </CardContent>
-                        <CardFooter className="flex-wrap justify-start gap-4">
+                        <CardFooter className="flex-wrap justify-start gap-4 bg-transparent">
                             {d.tech.map(t => (
-                                <Badge key={t} variant="outline" className="bg-[#41cc92] bg-opacity-70 text-opacity-50 text-xs">
+                                <Badge key={t} variant="outline" className="text-opacity-50 text-xs bg-[#41cc92] bg-opacity-70">
                                     {t}
                                 </Badge>
                             ))}
@@ -37,7 +40,9 @@ export default function AboutMeContent() {
             </section>
             <section id="projects" className="grid place-items-center mb-60">
                 {projectData.map((el) => (
-                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 drop-shadow-lg" key={el.name}>
+                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 bg-transparent border-none shadow-transparent
+                    transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
+                    key={el.name}>
                         <CardHeader>
                             <CardTitle>{el.name}</CardTitle>
                             <CardDescription>{el.time}</CardDescription>

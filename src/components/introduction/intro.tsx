@@ -5,9 +5,9 @@ import TypeIntro from "../typeintro/typeintro";
 export default function Intro() {
     let delay = 0;
     const getDelay = () => (delay += 200);
-
     return (
-        <div className="max-w-screen-md 2xl:max-w-7xl gap-5 flex flex-col justify-center min-h-full px-6 md:px-10 py-10 md:py-15 ">
+        <div className="flex flex-col justify-center gap-5 
+        max-w-screen-md 2xl:max-w-7xl min-h-full px-6 md:px-10 py-10 md:py-15">
             <p
                 className="text-2xl md:text-4xl tracking-widest animate-fade-up animate-ease-in-out"
             >
@@ -16,9 +16,9 @@ export default function Intro() {
 
             <strong
                 className={cn(
-                    `text-5xl md:text-8xl tracking-widest font-black bg-clip-text bg-gradient-to-r`,
-                    'animate-fade-up animate-ease-in-out',
-                    'from-indigo-700 to-red-500'
+                    `text-5xl md:text-8xl tracking-widest font-black bg-clip-text `,
+                    'bg-gradient-to-r from-indigo-700 to-red-500',
+                    'animate-fade-up animate-ease-in-out'
                 )}
                 style={{
                     WebkitTextFillColor: 'transparent',
