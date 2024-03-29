@@ -14,7 +14,7 @@ export default function MainNav() {
 
             <MobileNav/>
             <div className="hidden w-full md:flex justify-left items-center space-x-4">
-                <Image unoptimized src="/images/logo.png" alt="Logo" width={120} height={60}></Image>
+                <Image unoptimized src="/images/logo.png" alt="Logo" width={80} height={40}></Image>
                 {navItems.map((item) => (
                     <Button variant="link" asChild key={item.link}>
                         <Link href={item.link} key={item.link} className="text-sm hover:text-cyan-500">
