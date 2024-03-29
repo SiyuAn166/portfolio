@@ -7,14 +7,26 @@ export const navItems: Array<{
       label: "Home",
       link: '/',
     },
+    {
+      label: "About me",
+      link: '/about',
+    },
     // {
     //   label: "Blog",
     //   link: '/blog',
     // },
-    {
-      label: "About me",
-      link: '/about',
-    }
+    // {
+    //   label: "Link1",
+    //   link: "/link1"
+    // },
+    // {
+    //   label: "Link2",
+    //   link: "/link2"
+    // },
+    // {
+    //   label: "Link3",
+    //   link: "/link3"
+    // }
   ];
 
 export const githubPath: string = "https://github.com/SiyuAn166/";

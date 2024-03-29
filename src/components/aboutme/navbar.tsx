@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react";
-import {navItems }from "./navitems";
+import { navItems } from "./navitems";
 import { cn } from "@/lib/utils";
 
 
@@ -15,9 +15,12 @@ export default function NavBar() {
             const sectionElements = document.querySelectorAll('section');
             let activeSectionId = '';
 
+            var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            var halfViewportHeight = viewportHeight / 2;
+
             sectionElements.forEach((section) => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= 100 && rect.bottom >= 100) {
+                if (rect.top <= halfViewportHeight && rect.bottom >= halfViewportHeight) {
                     activeSectionId = section.id;
                 }
             });

@@ -15,11 +15,14 @@ export default function AboutMeContent() {
 
     return (
         <>
-            <section id="experience" key="#experience" className="grid place-items-center mb-60">
+            <section id="experience" key="#experience" className="grid place-items-center">
+                <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
+                    <strong className="p-3 ml-3 text-2xl">Experience</strong>
+                </div>
                 {experienceData.map((d, index) => (
-                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 bg-transparent border-none shadow-transparent
-                    transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
-                    key={d.role + index}
+                    <Card className="w-full md:w-3/5 mb-12 bg-transparent border-none shadow-transparent
+                        transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
+                        key={d.role + index}
                     >
                         <CardHeader>
                             <CardTitle>{d.role}</CardTitle>
@@ -38,11 +41,17 @@ export default function AboutMeContent() {
                     </Card>
                 ))}
             </section>
-            <section id="projects" className="grid place-items-center mb-60">
+
+
+            <section id="projects" className="grid place-items-center">
+                <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
+                   <strong className="p-3 ml-3 text-2xl">Projects</strong>
+                </div>
+
                 {projectData.map((el) => (
-                    <Card className="w-full md:w-3/5 mt-5 mb-10 py-10 bg-transparent border-none shadow-transparent
-                    transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
-                    key={el.name}>
+                    <Card className="w-full md:w-3/5 mb-12 bg-transparent border-none shadow-transparent
+                        transition duration-300 ease-in-out dark:hover:bg-slate-800/50 hover:bg-white/50 hover:shadow-xl"
+                        key={el.name}>
                         <CardHeader>
                             <CardTitle>{el.name}</CardTitle>
                             <CardDescription>{el.time}</CardDescription>

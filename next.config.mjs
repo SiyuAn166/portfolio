@@ -6,8 +6,9 @@ const nextConfig = {
     reactStrictMode: true,
     output: "export", // generate static resources into out folder in the base directory,
     images: {
-        loader: 'akamai',
-        path: '',
+        unoptimized: true
+        // loader: "akamai",
+        // path: "/"
     },
     basePath: basePath
 };
