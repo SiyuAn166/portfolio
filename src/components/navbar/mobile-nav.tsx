@@ -22,7 +22,7 @@ export default function MobileNav() {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-40 animate-fade-right">
                     <SheetHeader className="pt-10">
-                        <Image src="/images/logo.png" alt="" width={100} height={60}></Image>
+                        <Image src="images/logo.png" alt="" width={100} height={60}></Image>
                     </SheetHeader>
                     <ol className="pt-10">
                         {navItems.map((item) => (
