@@ -32,12 +32,12 @@ export default function NavBar() {
     }, []);
 
     return (
-        <div className="fixed text-sm md:text-2xl ">
+        <div className="fixed top-1/3 text-sm md:text-base">
             <ul className="animate-fade-up animate-ease-in-out">
                 {navItems.map((el) => (
                     <li key={el.link} className={cn("flex items-center p-4 gap-2 transition-all duration-700 ease-in-out",
                         activeLink === el.link.slice(1) ? "scale-125" : "")}>
-                        <div className="flex justify-end w-10 text-indigo-500">
+                        <div className="flex justify-end w-10">
                             {activeLink === el.link.slice(1) && (
                                 <el.icon />
                             )}
@@ -45,8 +45,7 @@ export default function NavBar() {
 
                         <div className="w-20 ">
                             <Link href={el.link} key={el.link}
-                                className={cn("transition duration-700 ease-in-out",
-                                    activeLink === el.link.slice(1) ? ' text-indigo-500' : '')}>
+                                className={cn("transition duration-700 ease-in-out")}>
                                 {el.label}
                             </Link>
                         </div>
