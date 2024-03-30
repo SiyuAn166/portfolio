@@ -10,7 +10,6 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { useState } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 import Logo from "@/components/site/logo";

@@ -1,5 +1,6 @@
 import { IconType } from "react-icons/lib";
-import { MdWork, MdOutlineComputer } from "react-icons/md";
+import { RiArrowRightSLine } from "react-icons/ri";
+
 
 export type ExperienceItem = {
     role: string,
@@ -74,13 +75,13 @@ const navItems: Array<{
         {
             label: "Experience",
             link: "#experience",
-            icon: MdWork
+            icon: RiArrowRightSLine
 
         },
         {
             label: "Projects",
             link: "#projects",
-            icon: MdOutlineComputer,
+            icon: RiArrowRightSLine,
         }
     ]
 

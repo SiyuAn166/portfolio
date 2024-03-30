@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import TypeIntro from "../typeintro/typeintro";
+import Name from "../site/name";
 
 
 export default function Intro() {
@@ -14,19 +15,14 @@ export default function Intro() {
                 Hi, my name is
             </p>
 
-            <strong
-                className={cn(
-                    `text-5xl md:text-8xl tracking-widest font-black bg-clip-text `,
-                    'bg-gradient-to-r from-indigo-700 to-red-500',
-                    'animate-fade-up animate-ease-in-out'
-                )}
+            <div className={'animate-fade-up animate-ease-in-out w-1/2'}
                 style={{
                     WebkitTextFillColor: 'transparent',
                     animationDelay: `${getDelay()}ms`,
                 }}
             >
-                Siyu An
-            </strong>
+                <Name/>
+            </div>
             <div
                 className={cn('animate-fade-up animate-ease-in-out')}
                 style={{

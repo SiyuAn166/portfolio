@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import Image from "next/image";
 import { navItems, githubPath, linkedInPath } from "./config";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ThemeSwitch from "../theme-switch/theme-switch";
