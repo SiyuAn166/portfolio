@@ -1,6 +1,3 @@
-import { IconType } from "react-icons/lib";
-import { RiArrowRightSLine } from "react-icons/ri";
-
 
 export type ExperienceItem = {
     role: string,
@@ -14,6 +11,13 @@ export type ProjectItem = {
     time: string, 
     desc: string,
     link?: string
+}
+
+export type EducationItem = {
+    school: string,
+    time: string,
+    major: string,
+    gpa: string
 }
 
 const experienceData: Array<ExperienceItem> = [
@@ -67,24 +71,46 @@ const projectData : Array<ProjectItem> = [
     }
 ]
 
+const educationData : Array<EducationItem> = [
+    {
+        school: "Simon Fraser University",
+        time: "Sep 2022 - Jan 2024",
+        major: "Master of Science in Professional Computer Science",
+        gpa: "4.0"
+    },
+    {
+        school: "University of Leeds",
+        time: "Sep 2020 - Nov 2021",
+        major: "Master of Science in Data Science and Analytics",
+        gpa: "2:1 Distinction"
+    },
+    {
+        school: "Hebei University of Architecture",
+        time: "Sep 2013- Jul 2017",
+        major: "Bachelor of Engineering in Materials Science and Engineering",
+        gpa: "3.7"
+    }
+]
+
 const navItems: Array<{
     label: string,
     link: string,
-    icon: IconType,
 }> = [
         {
             label: "Experience",
             link: "#experience",
-            icon: RiArrowRightSLine
 
         },
         {
             label: "Projects",
             link: "#projects",
-            icon: RiArrowRightSLine,
+        },
+        {
+            label: "Education",
+            link: "#education"
         }
     ]
 
 
 
-export { navItems, experienceData, projectData };
+export { navItems, experienceData, projectData, educationData };

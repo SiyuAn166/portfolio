@@ -29,5 +29,6 @@ export const navItems: Array<{
     // }
   ];
 
+export const email: string = "mailto:siyu.an166@gmail.com"
 export const githubPath: string = "https://github.com/SiyuAn166/";
 export const linkedInPath: string = "https://www.linkedin.com/in/siyu-an-bc/";

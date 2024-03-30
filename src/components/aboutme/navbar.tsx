@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState, useEffect } from "react";
 import { navItems } from "./navitems";
 import { cn } from "@/lib/utils";
-
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function NavBar() {
 
@@ -42,7 +42,7 @@ export default function NavBar() {
                         activeLink === el.link.slice(1) ? "scale-125" : "")}>
                         <div className="flex justify-end w-10">
                             {activeLink === el.link.slice(1) && (
-                                <el.icon />
+                                <RiArrowRightSLine/>
                             )}
                         </div>
 

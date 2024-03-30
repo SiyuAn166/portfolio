@@ -1,3 +1,4 @@
+import BackToTop from "../site/back-to-top"
 import AboutMeContent from "./content"
 import NavBar from "./navbar"
 
@@ -12,7 +13,7 @@ export default function AboutMe() {
             <div className="w-full md:w-4/5 animate-fade-up animate-ease-in-out">
                 <AboutMeContent />
             </div>
-
+            <BackToTop/>
         </div>
     )
 }
