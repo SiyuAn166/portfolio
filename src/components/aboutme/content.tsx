@@ -21,8 +21,8 @@ import {
 export default function AboutMeContent() {
 
     return (
-        <div className="pb-20">
-            <section id="experience" key="#experience" className="flex flex-wrap">
+        <div className="w-full md:w-5/6">
+            <section id="experience" key="#experience" className="flex flex-wrap pt-16">
                 <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
                     <strong className="p-3 ml-3 text-2xl">Experience</strong>
                 </div>
@@ -50,7 +50,7 @@ export default function AboutMeContent() {
             </section>
 
 
-            <section id="projects" className="flex flex-wrap">
+            <section id="projects" className="flex flex-wrap pt-16">
                 <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
                     <strong className="p-3 ml-3 text-2xl">Projects</strong>
                 </div>
@@ -80,7 +80,7 @@ export default function AboutMeContent() {
             </section>
 
 
-            <section id="education" key="#education" className=" pb-96">
+            <section id="education" key="#education" className="pt-16 pb-96">
                 <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
                     <strong className="p-3 ml-3 text-2xl">Education</strong>
                 </div>

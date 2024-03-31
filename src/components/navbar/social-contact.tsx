@@ -5,7 +5,7 @@ import { email, githubPath, linkedInPath } from "./config";
 import { MdOutlineEmail } from "react-icons/md";
 export default function SocialContact() {
     return (
-        <div className="flex justify-end items-center">
+        <div className="flex justify-center items-center">
             <Link href={email} target="_blank"
                 className="px-2 md:px-4 transition duration-600 ease-in-out hover:text-cyan-500 md:text-xl">
                 <MdOutlineEmail/>

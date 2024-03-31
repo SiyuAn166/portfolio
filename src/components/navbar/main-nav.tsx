@@ -11,10 +11,9 @@ import SocialContact from "./social-contact";
 
 export default function MainNav() {
     return (
-        <header className="flex justify-center z-10 items-center w-full backdrop-blur transition-[background-color,border-width] border-x-0 text-2xl md:text-base pt-3 px-3">
-
+        <header className="fixed top-0 left-auto z-10 backdrop-blur flex justify-between md:w-9/12 items-center w-full transition-[background-color,border-width] border-x-0 text-2xl md:text-base pt-3 px-3">
             <MobileNav />
-            <div className="hidden w-full md:flex justify-left items-center space-x-4">
+            <div className="hidden md:flex justify-left items-center space-x-4">
                 <div className="w-20">
                     <Logo />
                 </div>

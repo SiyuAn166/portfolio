@@ -7,10 +7,10 @@ export const navItems: Array<{
       label: "Home",
       link: '/',
     },
-    {
-      label: "About me",
-      link: '/about',
-    },
+    // {
+    //   label: "About me",
+    //   link: '/about',
+    // },
     // {
     //   label: "Blog",
     //   link: '/blog',

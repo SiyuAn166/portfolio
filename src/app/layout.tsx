@@ -16,15 +16,15 @@ export default function RootLayout({
 ) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="scroll-smooth bg-cover bg-center">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange>
+      <body className="bg-cover bg-center">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange>
 
-            {children}
+          {children}
 
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

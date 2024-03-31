@@ -35,7 +35,11 @@ export default function NavBar() {
     }, []);
 
     return (
-        <div className="fixed top-1/3 text-sm md:text-base">
+        <nav className="hidden md:block sticky top-1/4 w-1/6 text-sm md:text-base" 
+            style={{alignSelf: "flex-start"}}>
+            {/* Problem: the box is not scrolling due to flex box.
+                Fix: Since flex box elements default to stretch, all the elements are the same height, which can't be scrolled against.
+                Adding align-self: flex-start to the sticky element set the height to auto, which allowed scrolling, and fixed it. */}
             <ul className="animate-fade-up animate-ease-in-out">
                 {navItems.map((el) => (
                     <li key={el.link} className={cn("flex items-center p-4 gap-2 transition-all duration-700 ease-in-out",
@@ -55,6 +59,6 @@ export default function NavBar() {
                     </li>
                 ))}
             </ul>
-        </div>
+        </nav>
     )
 }

@@ -7,8 +7,7 @@ export default function Intro() {
     let delay = 0;
     const getDelay = () => (delay += 200);
     return (
-        <div className="flex flex-col justify-center gap-5 
-        max-w-screen-md 2xl:max-w-7xl min-h-full px-6 md:px-10 py-10 md:py-15">
+        <div className="flex flex-col justify-center gap-5 w-full min-h-screen 2xl:max-w-7xl px-6 md:px-10 py-10 md:py-15">
             <p
                 className="text-2xl md:text-4xl tracking-widest animate-fade-up animate-ease-in-out"
             >

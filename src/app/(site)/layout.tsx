@@ -3,9 +3,9 @@ import React from "react";
 export default function Layout({ children }: {children: React.ReactNode}) {
 
     return (
-        <div className="mx-auto w-full md:w-9/12">
+        <div className="flex justify-center">
             <MainNav />
-            <main className="min-h-[calc(100vh-190px)]">
+            <main className="w-full md:w-9/12 h-full">
                 {children}
             </main>
         </div>
