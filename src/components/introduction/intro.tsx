@@ -45,7 +45,7 @@ export default function Intro() {
                 <div className="text-2xl md:text-5xl py-2 md:py-4">
                     <span className={cn(`font-semibold text-[#61DAFB]`, 'underline decoration-[#61DAFB]')}>React</span>,&nbsp;
                     <span className={cn(`font-semibold text-[#007ACC]`, 'underline decoration-[#007ACC]')}>TypeScript</span>,&nbsp;
-                    <span className={cn(`font-semibold text-[#00ADD8]`, 'underline decoration-[#00ADD8]')}>Golang</span> and&nbsp;
+                    <span className={cn(`font-semibold text-[#00ADD8]`, 'underline decoration-[#00ADD8]')}>Python</span> and&nbsp;
                     <span className={cn(`font-semibold text-[#B07219]`, 'underline decoration-[#B07219]')}>Java</span>.
                 </div>
                 
