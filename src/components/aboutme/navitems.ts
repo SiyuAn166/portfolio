@@ -85,9 +85,9 @@ const educationData : Array<EducationItem> = [
         gpa: "2:1 Distinction"
     },
     {
-        school: "Hebei University",
+        school: "Hebei University of Architecture",
         time: "Sep 2013- Jul 2017",
-        major: "Bachelor of Science in Computer Science",
+        major: "Bachelor of Engineering in Materials Science",
         gpa: "3.7"
     }
 ]
