@@ -8,7 +8,7 @@ export type ExperienceItem = {
 
 export type ProjectItem = {
     name: string,
-    time: string, 
+    time: string,
     desc: string,
     link?: string
 }
@@ -50,7 +50,7 @@ const experienceData: Array<ExperienceItem> = [
     }
 ]
 
-const projectData : Array<ProjectItem> = [
+const projectData: Array<ProjectItem> = [
     {
         name: "Synthetic Data Generation with Diffusion Models",
         time: "Jan 2023 - Apr 2023",
@@ -71,7 +71,7 @@ const projectData : Array<ProjectItem> = [
     }
 ]
 
-const educationData : Array<EducationItem> = [
+const educationData: Array<EducationItem> = [
     {
         school: "Simon Fraser University",
         time: "Sep 2022 - Jan 2024",
@@ -96,6 +96,10 @@ const navItems: Array<{
     label: string,
     link: string,
 }> = [
+        {
+            label: "About Me",
+            link: "#aboutme"
+        },
         {
             label: "Experience",
             link: "#experience",

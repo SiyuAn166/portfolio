@@ -21,7 +21,39 @@ import {
 export default function AboutMeContent() {
 
     return (
-        <section id="aboutme" className="w-full md:w-5/6">
+        <section className="w-full md:w-5/6">
+            <section id="aboutme" key="#aboutme" className="flex flex-wrap pt-16">
+                <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
+                    <strong className="p-3 ml-3 text-2xl">About Me</strong>
+                </div>
+                <div className="w-full md:w-11/12 pl-6 ">
+
+                    <p className="mb-3">
+                        Experienced and results-driven software developer with 3 years of expertise in Full Stack Development.
+                        Proven ability to build robust and scalable applications using Java and Python,
+                        with a focus on creating intuitive and visually appealing user interfaces.
+                        Skilled in front-end technologies such as HTML, CSS, and  JavaScript, along with frameworks like React, Next.js.
+                        Strong communicator and collaborator,  seeking to contribute value to a forward-thinking team or organization.
+                    </p>
+                    <p className="mb-3">
+                        My journey into software development commenced in 2015, driven by a passion for technology and a desire to create.
+                        Beginning with self-taught Java programming, I embarked on a path that would shape my career.
+                        In 2017, I officially entered the realm of professional software development as a Java Software Developer.
+                    </p>
+                    <p className="mb-3">
+                        In my role, I honed my skills in crafting robust backend applications utilizing frameworks like Spring Boot,
+                        alongside database management with MyBatis and MySQL. Specializing in architecting RESTful APIs,
+                        I found joy in constructing systems that seamlessly communicated and delivered data.
+                    </p>
+                    <p>
+                        Driven by a hunger for knowledge and a commitment to growth, I decided to pursue further education in Computer Science
+                        at Simon Fraser University in Canada.
+                        During my tenure at SFU, my focus shifted towards emerging technologies in Deep Learning and Computer Vision.
+                        Delving into these cutting-edge fields, I expanded my understanding of artificial intelligence and its applications,
+                        paving the way for new opportunities and challenges in my journey as a developer.
+                    </p>
+                </div>
+            </section>
             <section id="experience" key="#experience" className="flex flex-wrap pt-16">
                 <div className="sticky top-0 backdrop-blur z-10 py-3 mb-10 w-full md:hidden">
                     <strong className="p-3 ml-3 text-2xl">Experience</strong>
