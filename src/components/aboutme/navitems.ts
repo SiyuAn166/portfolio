@@ -22,52 +22,37 @@ export type EducationItem = {
 
 const experienceData: Array<ExperienceItem> = [
     {
-        role: "Junior Data Analyst Co-op",
+        role: "Data Engineer Co-op",
         time: "May 2023 - Aug 2023",
-        desc: "Authored a manuscript for a peer-reviewed research paper that will be published on Nature Scientific Data,\
-        actively contributing to the cited research in the data science community.\
-        Implemented an ETL pipeline using Python, resulting in a 50% increase in data acquisition speed and a 25%\
-        reduction in processing time, ensuring continuous updates to the dataset.",
+        desc: "Co-authoring a manuscript for a peer-reviewed research paper destined for Nature Scientific Data, we made substantial contributions to advancing research methodologies and insights in the data science community. By implementing a Python-based ETL pipeline, we accelerated data acquisition by 50% and cut processing time by 25%, bolstering real-time data analysis capabilities and operational efficiency. Our development of a web API client integrating SOAP APIs facilitated seamless communication between systems, reducing manual data handling errors by 30% and optimizing user experience, thereby streamlining business operations.",
         tech: ["Python", "Pandas", "boto3", "SOAP API"]
     },
     {
         role: "Full Stack Developer",
         time: "Mar 2019 - Oct 2019",
-        desc: "Designed and deployed a scalable architecture using Spring Boot, integrating an MQTT server with web services, \
-        resulting in a 7% cost savings for the pipeline project and a significant reduction in on-site maintenance.\
-        Developed a suite of cost-effective front-end applications for pipeline engineers, leveraging Vue.js for an intuitive\
-        and responsive user interface. This effort contributed to substantial savings of up to 100,000 CNY.",
+        desc: "As a Full Stack Engineer at Best Energy Equipment China from March to October 2019, I redesigned architecture, integrated MQTT, and cut costs by 7%. Vue.js apps boosted revenue by 15%, RESTful APIs reduced integration time by 30%, and Docker deployment minimized errors by 25%. Collaborating closely with teams, API design improvements slashed project delivery time by 20%. My focus was driving innovation and efficiency, achieving tangible results.",
         tech: ["Java", "Spring Boot", "Vue.js", "Vuex", "MQTT", "MySQL", "RabbitMQ"]
     },
     {
-        role: "Full Stack Developer",
+        role: "Software Engineer",
         time: "Mar 2018 - Mar 2019",
-        desc: "Spearheaded the design and development of a highly successful furniture shop management system, contributing\
-        to a remarkable 15% increase in company turnover specifically attributed to furniture sales.\
-        Played a crucial role in bug-fixing for both front-end and back-end applications, leading to a 20% reduction in\
-        the number of customer issues escalated. This significantly enhanced the overall customer experience.",
+        desc: "I spearheaded the creation of a robust Kubernetes controller using Golang and Kubebuilder, cutting operation time by 50%. By integrating automated security scans through Jobs and CronJobs, I bolstered Kubernetes security, improving threat detection by 40%. Development efficiency soared with security check time reduced from 5 hours to 1.5 hours, accelerating release cycles by 20%. Additionally, I implemented a self-healing mechanism within the controller, slashing downtime by 25% and operational costs by 20%.",
         tech: ["Java", "Spring Boot", "React", "MySQL"]
     }
 ]
 
 const projectData: Array<ProjectItem> = [
     {
-        name: "Synthetic Data Generation with Diffusion Models",
+        name: "Data Augmentation with Diffusion Models",
         time: "Jan 2023 - Apr 2023",
-        desc: "Led a collaborative research initiative to produce high-quality synthetic datasets for CIFAR-10, ImageNet, and\
-        a melanoma-focused medical dataset, achieving exceptional Inception Score (IS) and Fréchet Inception Distance\
-        (FID) scores.\
-        Recognized for innovation, winning the university’s prestigious Innovation Prize and a $2,500 award.",
+        desc: "Led a collaborative research initiative to produce high-quality synthetic datasets for CIFAR-10, ImageNet, and a melanoma-focused medical dataset, achieving exceptional Inception Score (IS) and Fréchet Inception Distance (FID) scores. Recognized for innovation, winning the university’s prestigious Innovation Prize and a $2,500 award.",
         link: "https://www.sfu.ca/computing/current-students/graduate-students/academic-programs/professional-master-of-science-in-computer-science/project-showcase/is-seeing-still-not-necessarily-believing-.html"
     },
     {
         name: "Parkinson’s disease diagnosis using hand motion detection",
         time: "May 2021 - Sept 2021",
         desc: "Developed a Parkinson’s disease diagnostic system that utilizes hand motion detection and computer vision\
-        techniques such as Faster R-CNN and ResNet18.\
-        Constructed a dataset containing over 2000 annotated images of hand keypoints using the DeepLabCut tool.\
-        Achieved low finger recognition error rate of less than 20 pixels, demonstrating high recognition accuracy with\
-        images sized 1024 × 1024."
+        techniques such as Faster R-CNN and ResNet18. Constructed a dataset containing over 2000 annotated images of hand keypoints using the DeepLabCut tool. Achieved low finger recognition error rate of less than 20 pixels, demonstrating high recognition accuracy with images sized 1024 × 1024."
     }
 ]
 
