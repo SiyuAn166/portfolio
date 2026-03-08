@@ -14,4 +14,5 @@
  * NOTE: For local development you can also place a `data.json` file in the
  * `public/` folder and point this to `/data.json`.
  */
-export const GIST_URL = '/data.json';
+// export const GIST_URL = '/data.json';
+export const GIST_URL = 'https://gist.githubusercontent.com/SiyuAn166/5fa69f351f32a74cbe65c388278ac597/raw/a7df80c17f0c6534c72cb462a1a4bdfa0d9dfcf1/data.json';
