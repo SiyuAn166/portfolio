@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Theme tokens
+   ───────────────────────────────────────────── */
+:root[data-theme='dark'] {
+  --bg-main: #000000;
+  --text-dim: #D1D5DB;
+  --text-bright: #FFFFFF;
+  --accent: #22C55E;
+  --accent-fg: #000000;
+  --border-05: rgba(255, 255, 255, 0.05);
+  --border-10: rgba(255, 255, 255, 0.1);
+  --border-20: rgba(255, 255, 255, 0.2);
+  --text-faint: rgba(255, 255, 255, 0.2);
+  --text-mid: rgba(255, 255, 255, 0.4);
+  --text-strong: rgba(255, 255, 255, 0.8);
+  --cursor-glow: 0 0 12px #22C55E, 0 0 24px rgba(34, 197, 94, 0.4);
+  --scanline-op: 0.03;
+  --selection-bg: #22C55E;
+  --selection-fg: #000000;
+}
+
+:root[data-theme='light'] {
+  --bg-main: #F4F4F2;
+  --text-dim: #1A1A1A;
+  --text-bright: #000000;
+  --accent: #1D4ED8;
+  --accent-fg: #FFFFFF;
+  --border-05: rgba(0, 0, 0, 0.04);
+  --border-10: rgba(0, 0, 0, 0.1);
+  --border-20: rgba(0, 0, 0, 0.2);
+  --text-faint: rgba(0, 0, 0, 0.2);
+  --text-mid: rgba(0, 0, 0, 0.4);
+  --text-strong: rgba(0, 0, 0, 0.8);
+  --cursor-glow: none;
+  --scanline-op: 0.008;
+  --selection-bg: #1D4ED8;
+  --selection-fg: #FFFFFF;
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+  background-color: var(--bg-main, #000);
+  color: var(--text-dim, #D1D5DB);
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background-color: var(--selection-bg, #22C55E);
+  color: var(--selection-fg, #000);
+}
+
+/* ─── Semantic theme utilities ─── */
+.text-accent {
+  color: var(--accent);
+}
+
+.text-bright {
+  color: var(--text-bright);
+}
+
+.text-faint {
+  color: var(--text-faint);
+}
+
+.text-mid {
+  color: var(--text-mid);
+}
+
+.text-strong {
+  color: var(--text-strong);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.fg-accent {
+  color: var(--accent-fg);
+}
+
+.border-dim {
+  border-color: var(--border-10);
+}
+
+.border-dimmer {
+  border-color: var(--border-05);
+}
+
+.border-light {
+  border-color: var(--border-20);
+}
+
+/* ─── Scanline CRT overlay ─── */
+.scanline-overlay {
+  opacity: var(--scanline-op, 0.03);
+  background-image:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  transition: opacity 0.4s ease;
+}
+
+/* ─── Glitch hero title ─── */
+.glitch-title {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--text-bright);
+  opacity: 0;
+}
+
+.glitch-title::before {
+  color: #ff0055;
+}
+
+.glitch-title::after {
+  color: #00ddff;
+}
+
+.glitch-title.glitching::before,
+.glitch-title.glitching::after {
+  opacity: 1;
+  animation: glitchShift 0.4s steps(1) 3;
+}
+
+/* ─── Terminal blinking cursor ─── */
+.terminal-cursor {
+  display: inline-block;
+  width: 0.6rem;
+  height: 1.6rem;
+  background-color: var(--accent);
+  box-shadow: var(--cursor-glow, none);
+  animation: blink 0.8s steps(1) infinite;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ─── Progress bar ─── */
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--accent);
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar-fill.animate {
+  width: var(--target-width);
+}
+
+/* ─── Typewriter ─── */
+@keyframes typewriter {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter var(--typewriter-duration, 0.8s) steps(var(--typewriter-steps, 20)) forwards;
+}
+
+/* ─── Scroll reveal ─── */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── ASCII noise background ─── */
+.ascii-noise-grid {
+  opacity: var(--scanline-op, 0.03);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  user-select: none;
+  pointer-events: none;
+  color: var(--text-bright);
+  overflow: hidden;
+}
+
+/* ─── Power switch ─── */
+.power-switch-track {
+  border: 2px solid var(--text-bright);
+  transition: border-color 0.3s ease;
+}
+
+.power-switch-thumb {
+  background-color: var(--text-bright);
+  transition: transform 0.3s ease;
+}
+
+/* ─── Experience table ─── */
+.exp-row td {
+  transition: opacity 0.15s ease;
+}
+
+.exp-row:hover td {
+  opacity: 1 !important;
+}
+
+/* ─── Project card ─── */
+.project-card {
+  border: 2px dashed var(--border-20);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  background-color: var(--border-05);
+}
+
+/* ─── Keyframes ─── */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitchShift {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-3px, -2px);
+  }
+
+  20% {
+    clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    transform: translate(3px, 2px);
+  }
+
+  40% {
+    clip-path: polygon(0 10%, 100% 10%, 100% 30%, 0 30%);
+    transform: translate(-2px, 1px);
+  }
+
+  60% {
+    clip-path: polygon(0 70%, 100% 70%, 100% 90%, 0 90%);
+    transform: translate(2px, -1px);
+  }
+
+  80% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 65%, 0 65%);
+    transform: translate(-3px, 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

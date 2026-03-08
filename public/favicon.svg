@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Terminal dark background -->
+  <rect width="32" height="32" rx="5" fill="#0d0d0d"/>
+  <!-- Subtle inner border -->
+  <rect x="1" y="1" width="30" height="30" rx="4.5" fill="none" stroke="#22C55E" stroke-width="0.6" stroke-opacity="0.25"/>
+  <!-- > prompt chevron -->
+  <polyline
+    points="5,10 13,16 5,22"
+    fill="none"
+    stroke="#22C55E"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- _ cursor block (positioned right of chevron) -->
+  <rect x="16" y="19" width="11" height="3.5" rx="0.5" fill="#22C55E"/>
+  <!-- Cursor glow: soft shadow rect -->
+  <rect x="16" y="19" width="11" height="3.5" rx="0.5" fill="#22C55E" fill-opacity="0.35" transform="translate(0,1)"/>
+</svg>

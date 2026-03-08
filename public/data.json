@@ -1,0 +1,169 @@
+{
+    "meta": {
+        "systemTag": "DEBIAN_VIRTUAL_TERMINAL [TTY1]",
+        "time": "12:00:00 08/03/2026",
+        "session": "ACTIVE_SESSION: visitor",
+        "bootMessages": [
+            "[ OK ] Initializing Portfolio Kernel v6.0.2...",
+            "[ OK ] Detecting Data Store... Found [ID: 0x88AF]",
+            "[ OK ] Mounting /dev/identity as Read-Only...",
+            "[ OK ] Loading User_Modules: [Experience, Projects, Skills]",
+            "[ OK ] System ready.",
+            "Welcome, Visitor!"
+        ],
+        "copyright": "© 2026 SIYU_AN.SYS // PORTFOLIO // TERMINAL INTERFACE",
+        "location": "Loc: 49.2827° N, 123.1207° W // Enc: AES-256-GCM"
+    },
+    "identity": {
+        "title": "Siyu An",
+        "tagline": "I am a Software Engineer specializing in cloud‑platform engineering and operations. My primary focus is building, scaling and maintaining Kubernetes‑based infrastructures that power highly available, automated network and security services across hybrid and multi‑cloud environments. I work at the intersection of platform automation, cluster operations and cloud resource optimization—leveraging container orchestration (Kubernetes, Helm), observability pipelines and cost‑/performance‑driven decisions."
+    },
+    "experience": [
+        {
+            "permissions": "-rw-r--r--",
+            "owner": "siyu",
+            "size": "2048B",
+            "timestamp": "08/2024",
+            "name": "INFOBLOX",
+            "current": true,
+            "title": "Software Engineer",
+            "company": "Infoblox Canada Inc.",
+            "dateRange": "08/2024 – Present",
+            "highlights": [
+                "Designed and maintained DNS external logging workflows (DNStap/Syslog) as primary maintainer; coordinated with cross-functional teams to ensure secure data forwarding and audit compliance for 30+ enterprise clients.",
+                "Integrated third-party cloud services (Cloudflare, Akamai) into UDDI, delivering hybrid-cloud functionality for 200+ clients and driving 22% increase in adoption.",
+                "Implemented RPZ security mechanisms within UDDI cloud, enhancing DNS threat mitigation and system scalability across distributed clusters.",
+                "Optimized fragmented CI/CD pipelines by integrating MCP servers with GitHub Copilot; mentored team members on new workflow, cut manual steps by 80%.",
+                "Architected Golang-based CLI utility to address codebase import inconsistencies; facilitated team-wide adoption, boosting code review efficiency by 10%."
+            ]
+        },
+        {
+            "permissions": "-rw-r--r--",
+            "owner": "siyu",
+            "size": "1024B",
+            "timestamp": "05/2023",
+            "name": "SFU_BIG_DATA_HUB",
+            "current": false,
+            "title": "Data Engineer Co-op",
+            "company": "Simon Fraser University's Big Data Hub",
+            "dateRange": "05/2023 – 08/2023",
+            "researchUrl": "https://doi.org/10.1109/IEEEDATA.2024.3471469",
+            "highlights": [
+                "Co-authored research in Nature Scientific Data (SFU-EVP), focusing on large-scale data modeling for electric vehicle (EV) charging infrastructure.",
+                "Engineered ETL pipelines using Python and Pandas, handling 200M+ records and reducing data processing latency by 25%.",
+                "Streamlined data synchronization by building Web API Client, reducing manual data acquisition overhead by 40%."
+            ]
+        },
+        {
+            "permissions": "-rw-r--r--",
+            "owner": "siyu",
+            "size": "512B",
+            "timestamp": "03/2019",
+            "name": "BEST_ENERGY_EQUIPMENT",
+            "current": false,
+            "title": "Software Engineer",
+            "company": "Best Energy Equipment Co. Ltd.",
+            "dateRange": "03/2019 – 10/2019",
+            "highlights": [
+                "Designed and deployed scalable architecture using Spring Boot, integrating MQTT server with web services, realized 7% cost savings and curtailed on-site maintenance by 40%.",
+                "Architected and implemented RESTful APIs fostering seamless communication among system components, optimizing data exchange and slashing integration time by 30%.",
+                "Leveraged Docker for seamless deployment, ensuring consistency and scalability across environments, reduced deployment errors by 25%.",
+                "Collaborated with cross-functional teams to align API design with project objectives, resulting in 20% improvement in project delivery time."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "ONYX_PROTOCOL",
+            "version": "v2.1.0",
+            "status": "ACTIVE",
+            "description": "Decentralized peer-to-peer data synchronization engine built with Rust. Handles 1.2M operations per second with zero packet loss.",
+            "tags": [
+                "Rust_Lang",
+                "WebRTC",
+                "P2P"
+            ],
+            "license": "MIT_License",
+            "url": "https://github.com"
+        },
+        {
+            "name": "HELIX_ORM",
+            "version": "v1.4.2",
+            "status": "STABLE",
+            "description": "Type-safe database abstraction layer for Go with automatic migration generation and zero-reflection query building.",
+            "tags": [
+                "Go_Lang",
+                "PostgreSQL",
+                "SQLite"
+            ],
+            "license": "Apache-2.0",
+            "url": "https://github.com"
+        },
+        {
+            "name": "CIPHER_STREAM",
+            "version": "v0.9.0",
+            "status": "BETA",
+            "description": "Zero-knowledge encrypted real-time messaging protocol with forward secrecy and post-quantum key exchange.",
+            "tags": [
+                "TypeScript",
+                "WebCrypto",
+                "WASM"
+            ],
+            "license": "GPL-3.0"
+        },
+        {
+            "name": "KERNEL_WATCH",
+            "version": "v3.0.1",
+            "status": "ARCHIVED",
+            "description": "Linux kernel module for real-time syscall tracing and anomaly detection. Sub-microsecond latency overhead.",
+            "tags": [
+                "C_Lang",
+                "eBPF",
+                "Linux"
+            ],
+            "license": "GPL-2.0"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Golang",
+            "level": 88
+        },
+        {
+            "name": "Java",
+            "level": 86
+        },
+        {
+            "name": "Python",
+            "level": 84
+        },
+        {
+            "name": "TypeScript",
+            "level": 82
+        },
+        {
+            "name": "Microservices",
+            "level": 88
+        },
+        {
+            "name": "Kubernetes",
+            "level": 85
+        },
+        {
+            "name": "Docker",
+            "level": 84
+        },
+        {
+            "name": "REST_APIs",
+            "level": 85
+        },
+        {
+            "name": "AWS",
+            "level": 80
+        },
+        {
+            "name": "CI_CD_Pipelines",
+            "level": 85
+        }
+    ]
+}
