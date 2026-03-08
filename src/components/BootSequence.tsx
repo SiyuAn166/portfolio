@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface BootSequenceProps {
     messages: string[];
-    /** Delay in ms between each line appearing (default: 150) */
+    /** Delay in ms between each line appearing (default: 60 for Linux-fast style) */
     lineDelay?: number;
     onComplete?: () => void;
 }
@@ -30,7 +30,7 @@ function BootLine({ msg, isLast }: { msg: string; isLast: boolean }) {
         return (
             <p
                 className={isLast ? 'pt-2 font-bold' : ''}
-                style={{ animation: 'fadeInUp 0.2s ease-out forwards', color: 'var(--text-dim)' }}
+                style={{ color: 'var(--text-dim)' }}
             >
                 <span style={{ color: 'var(--text-dim)' }}>[ </span>
                 <span style={{ color }}>{tag.trim()}</span>
@@ -44,19 +44,18 @@ function BootLine({ msg, isLast }: { msg: string; isLast: boolean }) {
     return (
         <p
             className={isLast ? 'text-accent pt-2 font-bold' : 'text-dim'}
-            style={{ animation: 'fadeInUp 0.2s ease-out forwards' }}
         >
             {msg}
         </p>
     );
 }
 
-export function BootSequence({ messages, lineDelay = 150, onComplete }: BootSequenceProps) {
+export function BootSequence({ messages, lineDelay = 60, onComplete }: BootSequenceProps) {
     const [visibleCount, setVisibleCount] = useState(0);
 
     useEffect(() => {
         if (visibleCount >= messages.length) {
-            const done = setTimeout(() => onComplete?.(), 400);
+            const done = setTimeout(() => onComplete?.(), 150);
             return () => clearTimeout(done);
         }
         const timer = setTimeout(() => setVisibleCount(v => v + 1), lineDelay);

@@ -60,11 +60,11 @@ function App() {
           <div className="text-right text-[10px] text-mid uppercase leading-relaxed">
             {data ? (
               <>
-                Time: {currentTime || data.meta.time}<br />
+                SYSTEM_CLOCK: {currentTime || data.meta.time}<br />
                 {data.meta.session}
               </>
             ) : (
-              <>Time: --<br />Session: --</>
+              <>SYSTEM_CLOCK: --<br />SESSION: --</>
             )}
           </div>
         </header>
