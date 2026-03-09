@@ -1,150 +1,247 @@
 import { useState } from 'react';
 import type { ExperienceEntry } from '../types';
-import { CommandLine } from './CommandLine';
 
 interface ExperienceSectionProps {
     entries: ExperienceEntry[];
 }
 
-export function ExperienceSection({ entries }: ExperienceSectionProps) {
-    // First entry expanded by default
-    const [expanded, setExpanded] = useState<number | null>(0);
+/** Opacity ladder: current=100%, then decays for older entries */
+const OPACITY_LEVELS = [1, 0.55, 0.35, 0.18];
 
-    const toggle = (i: number) => setExpanded(prev => (prev === i ? null : i));
+/** Convert a display string to ALL_CAPS_TERMINAL format */
+function term(s: string): string {
+    return s
+        .toUpperCase()
+        .replace(/[\s'.]+/g, '_')
+        .replace(/[^A-Z0-9_\-]/g, '')
+        .replace(/_+$/, '');
+}
+
+/** Bus divider line color — shared across all rows to stay consistent */
+const BUS_CLR = 'var(--border-hi)';
+
+export function ExperienceSection({ entries }: ExperienceSectionProps) {
+    return (
+        <section className="font-mono text-[13px] select-none">
+
+            {/* ── TOP POINTER ──
+                 Layout: w-20 gutter | ^ (on the bus line) | message text
+                 The ^ replaces the very first | tick of the bus line.
+                 We achieve this by giving the right column `border-l` but
+                 offsetting the ^ with -ml-[1px] so the glyph sits centred
+                 on the 1px border, then using pl-3 for the text that follows.
+            ── */}
+            <div className="flex">
+                <div
+                    className="w-20 flex-shrink-0 text-[12px]"
+                    style={{ color: 'var(--fg-dim)' }}
+                >
+                    NOW
+                </div>
+                <div
+                    className="flex-1 border-l pb-2"
+                    style={{ borderColor: BUS_CLR }}
+                >
+                    {/* Negative left margin centres ^ over the 1px border */}
+                    <div className="relative">
+                        <span
+                            className="absolute text-[20px]"
+                            style={{ color: BUS_CLR, left: '-0.32em', top: '-0.7em' }}
+                        >^</span>
+                        <span
+                            className="animate-pulse text-[12px] uppercase tracking-widest ml-3"
+                            style={{ color: 'var(--warn)' }}
+                        >
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* ── JOURNAL ENTRIES ── */}
+            {entries.map((entry, i) => (
+                <EntryRow key={entry.name} entry={entry} index={i} />
+            ))}
+
+            {/* ── BOTTOM BOUNDARY ── */}
+            <div className="flex">
+                <div
+                    className="w-20 flex-shrink-0 text-[12px] pt-0.5"
+                    style={{ color: 'var(--fg-dim)' }}
+                >
+                </div>
+                <div
+                    className="flex-1 border-l pt-0.5"
+                    style={{ borderColor: BUS_CLR }}
+                >
+                    <div className="relative">
+                        <span
+                            className="absolute text-[22px]"
+                            style={{ color: BUS_CLR, left: '-0.3em', top: '-0.8em' }}
+                        >_</span>
+                        <span
+                            className="text-[12px] uppercase tracking-widest ml-3"
+                            style={{ color: 'var(--fg-dim)', opacity: 0.5 }}
+                        >
+                            END_OF_JOURNAL
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    );
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Single journal entry                           */
+/* ─────────────────────────────────────────────── */
+
+interface EntryRowProps {
+    entry: ExperienceEntry;
+    index: number;
+}
+
+function EntryRow({ entry, index }: EntryRowProps) {
+    const [expanded, setExpanded] = useState(false);
+    const [hovered, setHovered] = useState(false);
+
+    const isActive = !!entry.current;
+    const baseOpacity = OPACITY_LEVELS[Math.min(index, OPACITY_LEVELS.length - 1)];
+
+    const role = term(entry.title ?? 'UNKNOWN');
+    const corp = term(entry.company ?? 'UNKNOWN');
+    const period = (entry.dateRange ?? entry.timestamp).toUpperCase();
+    const status = isActive ? 'ACTIVE' : 'FORMER';
 
     return (
-        <section className="mb-20">
-            <CommandLine command="ls -la /vol/experience" />
+        <div
+            className="flex transition-opacity duration-300"
+            style={{ opacity: hovered ? 1 : baseOpacity }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            {/* Timestamp column */}
+            <div
+                className="w-20 flex-shrink-0 text-[12px] pt-0.5 leading-tight"
+                style={{ color: 'var(--fg-dim)' }}
+            >
+                {entry.timestamp}
+            </div>
 
-            <div className="space-y-px">
-                {entries.map((entry, i) => {
-                    const isExpanded = expanded === i;
-                    const hasDetails = (entry.highlights?.length ?? 0) > 0;
+            {/* Payload column — border-l creates the continuous bus line */}
+            <div
+                className="flex-1 border-l pb-7 relative"
+                style={{ borderColor: BUS_CLR }}
+            >
+                <span
+                    className="absolute text-[22px]"
+                    style={{ color: BUS_CLR, top: '-0.86em' }}
+                >_</span>
+                <div className="ml-3">
+                    {/* Entry header */}
+                    <div className="mb-1.5 uppercase tracking-widest leading-tight">
+                        <span className="font-bold" style={{ color: 'var(--fg-dim)' }}>{'>>> '}</span>
+                        <span className="font-bold" style={{ color: isActive ? 'var(--fg)' : 'var(--fg-dim)' }}>
+                            {entry.name}
+                        </span>
+                        <span
+                            className="ml-2 text-[11px]"
+                            style={{ color: isActive ? 'var(--warn)' : 'var(--fg-dim)' }}
+                        >
+                            [{status}]
+                        </span>
+                    </div>
 
-                    return (
-                        <div key={i}>
-                            {/* ── Summary row ── */}
-                            <button
-                                onClick={() => toggle(i)}
-                                className="w-full text-left flex items-center gap-3 py-2 px-2 transition-colors hover:bg-[var(--border-05)] font-mono text-[10px] md:text-[11px]"
-                                style={{ opacity: entry.current ? 1 : 0.6 }}
-                                aria-expanded={isExpanded}
-                            >
-                                {/* permissions */}
-                                <span className="tracking-tighter hidden sm:block flex-shrink-0 w-[8.5rem]" style={{ color: 'var(--text-mid)' }}>
-                                    {entry.permissions}
-                                </span>
-                                {/* owner */}
-                                <span className="hidden md:block flex-shrink-0 w-10" style={{ color: 'var(--text-mid)' }}>
-                                    {entry.owner}
-                                </span>
-                                {/* date */}
-                                <span className="flex-shrink-0 w-[5.5rem]" style={{ color: 'var(--text-mid)' }}>
-                                    {entry.timestamp}
-                                </span>
-                                {/* name — main label */}
-                                <span
-                                    className="flex-1 font-bold uppercase tracking-tight"
-                                    style={{ color: entry.current ? 'var(--accent)' : 'var(--text-strong)' }}
+                    {/* Key-value block — colons aligned at column 7 (padEnd(6) + " : ") */}
+                    <div className="space-y-0.5 text-[12px] mb-2">
+                        <KV k="ROLE" v={role} active={isActive} />
+                        <KV k="CORP" v={corp} />
+                        <KV k="PERIOD" v={period} />
+                        <KV k="STATUS" v={status} active={isActive} warn={isActive} />
+                        {entry.researchUrl && (
+                            <div className="flex">
+                                <span style={{ whiteSpace: 'pre', color: 'var(--fg-dim)' }}>{'REF   '}</span>
+                                <span style={{ color: 'var(--fg-dim)' }}>{' : '}</span>
+                                <a
+                                    href={entry.researchUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="underline"
+                                    style={{ color: 'var(--info)' }}
+                                    onClick={e => e.stopPropagation()}
                                 >
-                                    {entry.name}
-                                </span>
-                                {/* title pill — show when collapsed */}
-                                {entry.title && !isExpanded && (
-                                    <span className="hidden lg:block text-[9px] italic flex-shrink-0" style={{ color: 'var(--text-mid)' }}>
-                                        {entry.title}
-                                    </span>
-                                )}
-                                {/* expand chevron */}
-                                {hasDetails && (
-                                    <span
-                                        className="flex-shrink-0 text-[10px] transition-transform duration-200 text-accent"
-                                        style={{ transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}
-                                    >
-                                        ▶
-                                    </span>
-                                )}
+                                    EXTERNAL LINK ↗
+                                </a>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Highlights toggle */}
+                    {entry.highlights && entry.highlights.length > 0 && (
+                        <>
+                            <button
+                                onClick={() => setExpanded(v => !v)}
+                                className="text-[12px] uppercase tracking-widest cursor-pointer hover:underline"
+                                style={{ background: 'none', border: 'none', padding: 0, color: 'var(--fg-dim)' }}
+                            >
+                                {expanded
+                                    ? '[-] COLLAPSE'
+                                    : `[+] EXPAND_HIGHLIGHTS(${entry.highlights.length})`}
                             </button>
 
-                            {/* ── Expanded detail panel ── */}
-                            {isExpanded && hasDetails && (
-                                <div
-                                    className="ml-2 mb-4 border-l-2 pl-4 pt-2 pb-3"
-                                    style={{ borderColor: 'var(--border-20)' }}
-                                >
-                                    {/* cat command echo */}
-                                    <div className="text-[9px] uppercase tracking-widest mb-3" style={{ color: 'var(--text-mid)' }}>
-                                        $ cat {entry.name}
-                                    </div>
-
-                                    {/* metadata block */}
-                                    <div className="text-[11px] space-y-0.5 mb-4 font-mono">
-                                        {entry.title && (
-                                            <div className="flex gap-2">
-                                                <span className="flex-shrink-0 w-20" style={{ color: 'var(--text-mid)' }}>title:</span>
-                                                <span className="font-bold text-bright">{entry.title}</span>
-                                            </div>
-                                        )}
-                                        {entry.company && (
-                                            <div className="flex gap-2">
-                                                <span className="flex-shrink-0 w-20" style={{ color: 'var(--text-mid)' }}>company:</span>
-                                                <span style={{ color: 'var(--text-strong)' }}>{entry.company}</span>
-                                            </div>
-                                        )}
-                                        {entry.dateRange && (
-                                            <div className="flex gap-2">
-                                                <span className="flex-shrink-0 w-20" style={{ color: 'var(--text-mid)' }}>period:</span>
-                                                <span className="text-accent">{entry.dateRange}</span>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* divider */}
-                                    <div className="mb-3" style={{ borderTop: '1px solid var(--border-10)' }} />
-
-                                    {/* highlights */}
-                                    <div className="space-y-2">
-                                        {entry.highlights?.map((h, j) => (
-                                            <div key={j} className="flex items-start gap-2 text-[11px] leading-relaxed">
-                                                <span className="text-accent flex-shrink-0 mt-0.5">›</span>
-                                                <span style={{ color: 'var(--text-strong)', opacity: 0.85 }}>{h}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* links section */}
-                                    <div className="flex flex-wrap gap-4 mt-4">
-                                        {/* research publication link */}
-                                        {entry.researchUrl && (
-                                            <a
-                                                href={entry.researchUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1 text-[9px] uppercase tracking-widest text-accent hover:underline"
-                                                onClick={e => e.stopPropagation()}
+                            {expanded && (
+                                <div className="mt-2 space-y-2">
+                                    {entry.highlights.map((h, j) => (
+                                        <div key={j} className="flex gap-2 text-[12px]">
+                                            <span
+                                                className="flex-shrink-0 font-bold"
+                                                style={{ color: 'var(--fg-dim)' }}
                                             >
-                                                ↗ research_paper
-                                            </a>
-                                        )}
-                                        {/* general reference/project link */}
-                                        {entry.url && (
-                                            <a
-                                                href={entry.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1 text-[9px] uppercase tracking-widest text-accent hover:underline"
-                                                onClick={e => e.stopPropagation()}
+                                                {`[${String(j + 1).padStart(2, '0')}]`}
+                                            </span>
+                                            <span
+                                                className="uppercase"
+                                                style={{ color: 'var(--fg-dim)', wordBreak: 'break-word' }}
                                             >
-                                                ↗ view_reference
-                                            </a>
-                                        )}
-                                    </div>
+                                                {h}
+                                            </span>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
-                        </div>
-                    );
-                })}
+                        </>
+                    )}
+                </div>
             </div>
-        </section>
+        </div>
+    );
+}
+
+/* ─────────────────────────────────────────────── */
+/*  Key : Value row with aligned colons            */
+/* ─────────────────────────────────────────────── */
+
+interface KVProps {
+    k: string;
+    v: string;
+    active?: boolean;
+    warn?: boolean;
+}
+
+function KV({ k, v, active, warn }: KVProps) {
+    const valColor = warn
+        ? 'var(--warn)'
+        : active
+            ? 'var(--fg)'
+            : 'var(--fg-dim)';
+
+    return (
+        <div className="flex">
+            {/* padEnd(6) aligns all colons at column 7 in monospace */}
+            <span style={{ whiteSpace: 'pre', color: 'var(--fg-dim)' }}>{k.padEnd(6)}</span>
+            <span style={{ color: 'var(--fg-dim)' }}>{' : '}</span>
+            <span className="uppercase" style={{ color: valColor }}>{v}</span>
+        </div>
     );
 }

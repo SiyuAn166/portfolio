@@ -1,18 +1,28 @@
 {
     "meta": {
-        "systemTag": "DEBIAN_VIRTUAL_TERMINAL [TTY1]",
+        "systemTag": "DEBIAN_12.5_KNL_6.1.0-X86_64 [TTY1]",
         "time": "12:00:00 08/03/2026",
         "session": "ACTIVE_SESSION: visitor",
-        "bootMessages": [
-            "[ OK ] Initializing Portfolio Kernel v6.0.2...",
-            "[ OK ] Detecting Data Store... Found [ID: 0x88AF]",
-            "[ OK ] Mounting /dev/identity as Read-Only...",
-            "[ OK ] Loading User_Modules: [Experience, Projects, Skills]",
-            "[ OK ] System ready.",
-            "Welcome, Visitor!"
-        ],
-        "copyright": "© 2026 SIYU_AN.SYS // PORTFOLIO // TERMINAL INTERFACE",
-        "location": "Loc: 49.2827° N, 123.1207° W // Enc: AES-256-GCM"
+        "bannerTitle": "Welcome to Termfolio v6.0.2",
+        "bannerSystem": "Termfolio OS 6.1.0-lts x86_64",
+        "copyright": "© 2026 TERMFOLIO // TERMINAL INTERFACE",
+        "location": "Loc: 49.2827° N, 123.1207° W // Enc: AES-256-GCM",
+        "commands": {
+            "help": "Available commands: help, whoami, clear, contact, social, pwd, ls, date, uname, echo",
+            "whoami": "SIYU AN // SOFTWARE ENGINEER // PLATFORM & CLOUD OPS",
+            "clear": "__CLEAR__",
+            "contact": "→  linkedin.com/in/siyu-an-bc",
+            "social": "→  github.com/siyuan-an",
+            "pwd": "/home/guest/termfolio",
+            "ls": "bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  srv  sys  tmp  usr  var",
+            "uname": "Linux termfolio 6.2.0-x86_64 #1 SMP x86_64 GNU/Linux"
+        }
+    },
+    "commandStrings": {
+        "identity": "$ whoami --verbose",
+        "experience": "$ cat ~/experience",
+        "projects": "$ ls -la ~/projects",
+        "skills": "$ stats --visualize --skills"
     },
     "identity": {
         "title": "Siyu An",
@@ -28,7 +38,7 @@
             "current": true,
             "title": "Software Engineer",
             "company": "Infoblox Canada Inc.",
-            "dateRange": "08/2024 – Present",
+            "dateRange": "08/2024 -> PRESENT",
             "highlights": [
                 "Designed and maintained DNS external logging workflows (DNStap/Syslog) as primary maintainer; coordinated with cross-functional teams to ensure secure data forwarding and audit compliance for 30+ enterprise clients.",
                 "Integrated third-party cloud services (Cloudflare, Akamai) into UDDI, delivering hybrid-cloud functionality for 200+ clients and driving 22% increase in adoption.",
@@ -46,7 +56,7 @@
             "current": false,
             "title": "Data Engineer Co-op",
             "company": "Simon Fraser University's Big Data Hub",
-            "dateRange": "05/2023 – 08/2023",
+            "dateRange": "05/2023 -> 08/2023",
             "researchUrl": "https://doi.org/10.1109/IEEEDATA.2024.3471469",
             "highlights": [
                 "Co-authored research in Nature Scientific Data (SFU-EVP), focusing on large-scale data modeling for electric vehicle (EV) charging infrastructure.",
@@ -63,7 +73,7 @@
             "current": false,
             "title": "Software Engineer",
             "company": "Best Energy Equipment Co. Ltd.",
-            "dateRange": "03/2019 – 10/2019",
+            "dateRange": "03/2019 -> 10/2019",
             "highlights": [
                 "Designed and deployed scalable architecture using Spring Boot, integrating MQTT server with web services, realized 7% cost savings and curtailed on-site maintenance by 40%.",
                 "Architected and implemented RESTful APIs fostering seamless communication among system components, optimizing data exchange and slashing integration time by 30%.",

@@ -14,7 +14,7 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
             title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
         >
             {/* Label above the switch */}
-            <span className="text-bright text-[8px] font-black uppercase tracking-[0.18em] leading-none"
+            <span className="text-bright text-[10px] font-black uppercase tracking-[0.18em] leading-none"
                 style={{ opacity: 0.3 }}
             >
                 PWR
@@ -30,7 +30,7 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
                 />
             </div>
             {/* Mode indicator below */}
-            <span className="text-accent text-[7px] font-black uppercase tracking-widest leading-none"
+            <span className="text-accent text-[9px] font-black uppercase tracking-widest leading-none"
                 style={{ opacity: 0.5 }}
             >
                 {isDark ? 'DARK' : 'LITE'}

@@ -5,12 +5,16 @@ export interface Meta {
     time: string;
     /** Active session identifier */
     session: string;
-    /** Lines shown during the animated boot sequence */
-    bootMessages: string[];
+    /** First line of the welcome banner, e.g. "Welcome to TERMFOLIO v6.0.2" */
+    bannerTitle: string;
+    /** Second line of the welcome banner, e.g. "Running on: Linux termfolio 6.2.0-x86_64" */
+    bannerSystem: string;
     /** Copyright line shown in the footer, e.g. "© 2026 ARCHITECT_TTY_SESSION" */
     copyright: string;
     /** Location + crypto shown in footer, e.g. "Loc: 49.28° N, 123.12° W // Enc: AES-256-GCM" */
     location: string;
+    /** Terminal commands configuration (optional) */
+    commands?: Record<string, string>;
 }
 
 export interface Identity {
@@ -71,10 +75,22 @@ export interface Skill {
     level: number;
 }
 
+export interface CommandStrings {
+    /** Command string for identity section */
+    identity: string;
+    /** Command string for experience section */
+    experience: string;
+    /** Command string for projects section */
+    projects: string;
+    /** Command string for skills section */
+    skills: string;
+}
+
 export interface PortfolioData {
     meta: Meta;
     identity: Identity;
     experience: ExperienceEntry[];
     projects: Project[];
     skills: Skill[];
+    commandStrings?: CommandStrings;
 }

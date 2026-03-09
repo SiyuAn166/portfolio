@@ -5,15 +5,15 @@ interface ProjectCardProps {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-    ACTIVE: 'var(--accent)',
-    STABLE: '#60A5FA',
-    BETA: '#FBBF24',
-    ARCHIVED: 'var(--text-mid)',
-    WIP: '#F97316',
+    ACTIVE: 'var(--fg)',
+    STABLE: 'var(--info)',
+    BETA: 'var(--warn)',
+    ARCHIVED: 'var(--fg-dim)',
+    WIP: 'var(--warn)',
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-    const statusColor = STATUS_COLORS[project.status] ?? 'var(--text-mid)';
+    const statusColor = STATUS_COLORS[project.status] ?? 'var(--fg-dim)';
 
     const handleClick = () => {
         if (project.url) window.open(project.url, '_blank', 'noopener,noreferrer');
@@ -21,7 +21,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
     return (
         <div
-            className="project-card p-4"
+            className="project-card p-3"
             onClick={project.url ? handleClick : undefined}
             style={{ cursor: project.url ? 'pointer' : 'default' }}
             role={project.url ? 'link' : undefined}
@@ -30,32 +30,35 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 if (project.url && (e.key === 'Enter' || e.key === ' ')) handleClick();
             }}
         >
-            {/* Single-line compact header */}
-            <div className="flex items-baseline justify-between gap-2 mb-2.5">
+            {/* Header */}
+            <div className="flex items-baseline justify-between gap-2 mb-2">
                 <div className="flex items-baseline gap-2 min-w-0 overflow-hidden">
                     <span
-                        className="text-[9px] font-black uppercase tracking-widest flex-shrink-0"
+                        className="text-[11px] font-bold uppercase tracking-widest flex-shrink-0"
                         style={{ color: statusColor }}
                     >
                         [{project.status}]
                     </span>
-                    <span className="text-bright font-black text-[13px] uppercase tracking-tight truncate">
+                    <span
+                        className="font-bold text-[14px] uppercase tracking-tight truncate"
+                        style={{ color: 'var(--fg)' }}
+                    >
                         {project.name}
                     </span>
-                    <span className="text-[9px] flex-shrink-0" style={{ color: 'var(--text-mid)' }}>
+                    <span className="text-[11px] flex-shrink-0" style={{ color: 'var(--fg-dim)' }}>
                         {project.version}
                     </span>
                 </div>
                 {project.url && (
-                    <span className="text-accent text-[11px] flex-shrink-0 opacity-60">↗</span>
+                    <span className="text-[13px] flex-shrink-0" style={{ color: 'var(--fg-dim)' }}>↗</span>
                 )}
             </div>
 
-            {/* Description — 2-line clamp */}
+            {/* Description */}
             <p
-                className="text-[11px] leading-relaxed mb-3"
+                className="text-[13px] leading-relaxed mb-3"
                 style={{
-                    opacity: 0.72,
+                    color: 'var(--fg-dim)',
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
@@ -66,14 +69,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 text-[9px] font-black uppercase">
+            <div className="flex flex-wrap gap-1 text-[11px] font-bold uppercase">
                 {project.tags.map(tag => (
-                    <span key={tag} className="bg-accent fg-accent px-1.5 py-0.5">
-                        # {tag}
+                    <span
+                        key={tag}
+                        className="px-1.5 py-0.5"
+                        style={{
+                            border: '1px solid var(--border-hi)',
+                            color: 'var(--fg-dim)',
+                        }}
+                    >
+                        #{tag}
                     </span>
                 ))}
                 {project.license && (
-                    <span className="border border-light px-1.5 py-0.5 italic" style={{ color: 'var(--text-mid)' }}>
+                    <span
+                        className="px-1.5 py-0.5 italic"
+                        style={{ border: '1px solid var(--border)', color: 'var(--fg-dim)' }}
+                    >
                         {project.license}
                     </span>
                 )}

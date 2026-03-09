@@ -224,7 +224,6 @@ src/
     ├── ScanlineOverlay.tsx    ← Fixed CRT scanline effect
     ├── AsciiNoise.tsx         ← Fixed canvas ASCII character noise
     ├── ThemeToggle.tsx        ← Top-right power switch button
-    ├── BootSequence.tsx       ← Staggered boot message reveal
     ├── CommandLine.tsx        ← Reusable $ command line with typewriter
     ├── RevealSection.tsx      ← IntersectionObserver fade-up wrapper
     ├── HeroSection.tsx        ← whoami section with glitch title

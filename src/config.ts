@@ -1,18 +1,15 @@
 /**
- * URL of the GitHub Gist raw file that contains your portfolio data.
+ * Data source URL configuration.
  *
- * How to update:
- *   1. Create a Gist at https://gist.github.com with a file named `data.json`
- *   2. Open the raw file (click "Raw" on the Gist page)
- *   3. Copy the URL — it looks like:
- *      https://gist.githubusercontent.com/<user>/<gist-id>/raw/<file-hash>/data.json
- *   4. Paste it here and save.
+ * Automatically switches between local dev data and production Gist based on build environment:
+ *   - Development: /data.json from public/ folder (.env)
+ *   - Production: GitHub Gist URL (.env.production)
  *
- * The app fetches this URL on every page load.
- * No rebuild needed — just update your Gist content.
+ * To update the production Gist URL:
+ *   1. Edit .env.production file
+ *   2. Run: npm run build
+ *   3. Deploy to GitHub Pages
  *
- * NOTE: For local development you can also place a `data.json` file in the
- * `public/` folder and point this to `/data.json`.
+ * The data is fetched on every page load, so Gist changes are reflected immediately.
  */
-// export const GIST_URL = '/data.json';
-export const GIST_URL = 'https://gist.githubusercontent.com/SiyuAn166/5fa69f351f32a74cbe65c388278ac597/raw/a7df80c17f0c6534c72cb462a1a4bdfa0d9dfcf1/data.json';
+export const GIST_URL = import.meta.env.VITE_GIST_URL || '/data.json';

@@ -1,43 +1,28 @@
-import { useEffect, useState } from 'react';
-import type { Identity } from '../types';
-import { CommandLine } from './CommandLine';
+import * as React from 'react';
 
-interface HeroSectionProps {
-    identity: Identity;
+interface LoginInfo {
+    lastLogin: string;
+    userIP: string;
 }
 
-export function HeroSection({ identity }: HeroSectionProps) {
-    const [glitching, setGlitching] = useState(false);
+export function useHeroState(): LoginInfo {
+    const [lastLogin, setLastLogin] = React.useState('');
+    const [userIP, setUserIP] = React.useState('127.0.0.1');
 
-    // Fire glitch on mount after a short delay, then repeat occasionally
-    useEffect(() => {
-        const fire = () => {
-            setGlitching(true);
-            setTimeout(() => setGlitching(false), 500);
-        };
+    React.useEffect(() => {
+        const now = new Date();
+        const day = now.toLocaleString('en-US', { weekday: 'short' });
+        const month = now.toLocaleString('en-US', { month: 'short' });
+        const date = String(now.getDate()).padStart(2, '0');
+        const time = now.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+        const year = now.getFullYear();
+        setLastLogin(`${day} ${month} ${date} ${time} ${year}`);
 
-        const initial = setTimeout(fire, 800);
-        const interval = setInterval(fire, 7000);
-        return () => {
-            clearTimeout(initial);
-            clearInterval(interval);
-        };
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => setUserIP(data.ip))
+            .catch(() => setUserIP('127.0.0.1'));
     }, []);
 
-    return (
-        <section className="mb-20">
-            <CommandLine command="whoami --verbose" />
-            <div className="pl-6 border-l-2 border-dim max-w-3xl">
-                <h1
-                    className={`glitch-title text-bright text-3xl md:text-5xl font-black italic tracking-tighter uppercase mb-4${glitching ? ' glitching' : ''}`}
-                    data-text={identity.title}
-                >
-                    {identity.title}
-                </h1>
-                <p className="text-sm leading-relaxed italic" style={{ opacity: 0.8 }}>
-                    &gt; {identity.tagline}
-                </p>
-            </div>
-        </section>
-    );
+    return { lastLogin, userIP };
 }

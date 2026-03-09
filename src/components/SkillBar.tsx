@@ -1,46 +1,25 @@
-import { useEffect, useRef } from 'react';
 import type { Skill } from '../types';
 
-interface SkillBarProps {
-    skill: Skill;
-    /** Delay before the bar animates in (ms, default 0) */
-    delay?: number;
-    animate?: boolean;
-}
+const TOTAL = 30;
 
-export function SkillBar({ skill, delay = 0, animate = false }: SkillBarProps) {
-    const fillRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!animate) return;
-        const el = fillRef.current;
-        if (!el) return;
-
-        const timer = setTimeout(() => {
-            el.classList.add('animate');
-        }, delay);
-        return () => clearTimeout(timer);
-    }, [animate, delay]);
+export function SkillBar({ skill }: { skill: Skill }) {
+    const filled = Math.round((skill.level / 100) * TOTAL);
+    const empty = TOTAL - filled;
 
     return (
-        <div className="space-y-1">
-            <div className="flex justify-between text-[10px] uppercase font-bold tracking-widest text-bright">
-                <span>{skill.name}</span>
-                <span>{skill.level}%</span>
-            </div>
-            <div
-                className="h-2 flex border"
-                style={{
-                    backgroundColor: 'var(--border-05)',
-                    borderColor: 'var(--border-10)',
-                }}
-            >
-                <div
-                    ref={fillRef}
-                    className="progress-bar-fill"
-                    style={{ '--target-width': `${skill.level}%` } as React.CSSProperties}
-                />
-            </div>
+        <div className="flex items-center gap-3 text-[13px] font-mono">
+            <span style={{ flexShrink: 0 }}>
+                <span style={{ color: 'var(--fg-dim)' }}>[</span>
+                <span className="hash-filled">{'#'.repeat(filled)}</span>
+                <span className="hash-empty">{'-'.repeat(empty)}</span>
+                <span style={{ color: 'var(--fg-dim)' }}>]</span>
+            </span>
+            <span className="uppercase tracking-widest" style={{ color: 'var(--fg)' }}>
+                {skill.name}
+            </span>
+            <span className="ml-auto flex-shrink-0" style={{ color: 'var(--fg-dim)' }}>
+                {skill.level}%
+            </span>
         </div>
     );
 }
