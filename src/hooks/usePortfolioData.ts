@@ -18,17 +18,22 @@ export function usePortfolioData(): UsePortfolioDataResult {
 
         async function load() {
             try {
+                console.log('fetching data...');
                 const res = await fetch(GIST_URL);
                 if (!res.ok) {
                     throw new Error(`HTTP ${res.status} ${res.statusText}`);
                 }
                 const json: PortfolioData = await res.json();
                 if (!cancelled) {
+                    console.log('data loaded successfully!');
                     setData(json);
+                    setError(null);
                 }
             } catch (err) {
                 if (!cancelled) {
-                    setError(err instanceof Error ? err.message : String(err));
+                    const errorMsg = err instanceof Error ? err.message : String(err);
+                    console.error('error loading data:', errorMsg);
+                    setError(errorMsg);
                 }
             } finally {
                 if (!cancelled) {
