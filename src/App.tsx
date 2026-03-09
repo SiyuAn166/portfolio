@@ -13,7 +13,7 @@ import './index.css';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
-  const { data } = usePortfolioData();
+  const { data, error } = usePortfolioData();
   const [revealIndex, setRevealIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState('');
   const { lastLogin, userIP } = useHeroState();
@@ -36,6 +36,18 @@ function App() {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      console.log('data loaded successfully!');
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      console.error('error loading data:', error);
+    }
+  }, [error]);
 
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh', color: 'var(--fg)' }}>
