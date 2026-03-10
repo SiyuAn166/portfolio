@@ -22,10 +22,36 @@ const DEFAULT_COMMANDS: Record<string, string | ((input: string) => string)> = {
     exit: 'logout',
 };
 
+/** CSS for top-left corner triangle indicator */
+const TRIANGLE_STYLE = `
+  :root[data-theme='dark'] .input-container-active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: rgba(250, 250, 246, 0.3);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  
+  :root[data-theme='light'] .input-container-active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: rgba(20, 30, 45, 0.3);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+`;
+
 export function TerminalInput({ meta }: { meta?: Meta }) {
     const [input, setInput] = useState('');
     const [history, setHistory] = useState<{ cmd: string; output: string }[]>([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
+    const [isFocused, setIsFocused] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     const sizerRef = useRef<HTMLSpanElement>(null);
     const inputRowRef = useRef<HTMLDivElement>(null);
@@ -124,65 +150,79 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
     };
 
     return (
-        <section
-            className="border-t"
-            style={{ borderColor: 'var(--border)' }}
-            onClick={() => inputRef.current?.focus()}
-        >
-            <div className="pt-8 pb-12">
-                {history.length > 0 && (
-                    <div className="space-y-1 mb-3 text-[13px] font-mono max-w-2xl">
-                        {history.map((h, i) => (
-                            <div key={i}>
-                                <p>
-                                    <span style={{ color: 'var(--fg-dim)' }}>{SHELL_USER}@{SHELL_HOST}:{SHELL_DIR}</span>
-                                    <span style={{ color: 'var(--fg)' }}>$ </span>
-                                    <span style={{ color: 'var(--fg)' }}>{h.cmd}</span>
-                                </p>
-                                {h.output && <p style={{ color: 'var(--fg)' }}>{h.output}</p>}
+        <>
+            <style>{TRIANGLE_STYLE}</style>
+            {/* Outer container with top-left corner triangle on focus */}
+            <div
+                className={`w-full transition-all duration-300 relative ${isFocused ? 'input-container-active' : ''}`}
+                style={{
+                    width: '100%',
+                    background: 'var(--bg)',
+                    boxSizing: 'border-box',
+                }}
+            >
+                <section
+                    className=""
+                    onClick={() => inputRef.current?.focus()}
+                >
+                    <div className="pt-8 pb-12 mx-auto" style={{ maxWidth: '80rem' }}>
+                        {history.length > 0 && (
+                            <div className="space-y-1 mb-3 text-[13px] font-mono w-full">
+                                {history.map((h, i) => (
+                                    <div key={i}>
+                                        <p>
+                                            <span style={{ color: 'var(--fg-dim)' }}>{SHELL_USER}@{SHELL_HOST}:{SHELL_DIR}</span>
+                                            <span style={{ color: 'var(--fg)' }}>$ </span>
+                                            <span style={{ color: 'var(--fg)' }}>{h.cmd}</span>
+                                        </p>
+                                        {h.output && <p style={{ color: 'var(--fg)' }}>{h.output}</p>}
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                )}
+                        )}
 
-                <div ref={inputRowRef} className="flex items-center text-[13px] font-mono max-w-2xl">
-                    <span style={{ color: 'var(--fg-dim)', flexShrink: 0 }}>{SHELL_USER}@{SHELL_HOST}:{SHELL_DIR}</span>
-                    <span style={{ color: 'var(--fg)', flexShrink: 0 }}>$</span>
-                    <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', flex: 1, minWidth: 0, marginLeft: '1ch' }}>
-                        {/* Hidden sizer: measures exact pixel width of typed text */}
-                        <span
-                            ref={sizerRef}
-                            aria-hidden="true"
-                            style={{
-                                visibility: 'hidden', position: 'absolute', whiteSpace: 'pre',
-                                pointerEvents: 'none', fontFamily: 'inherit', fontSize: 'inherit',
-                                fontWeight: 'inherit', letterSpacing: 'inherit', left: 0, top: 0,
-                            }}
-                        >
-                            {input}
-                        </span>
-                        <input
-                            ref={inputRef}
-                            value={input}
-                            onChange={e => setInput(e.target.value)}
-                            onKeyDown={handleKey}
-                            className="bg-transparent outline-none border-none"
-                            style={{
-                                color: 'var(--fg)',
-                                caretColor: 'transparent', // hidden — block cursor span used instead
-                                fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 'inherit',
-                                letterSpacing: 'inherit', padding: 0, margin: 0, minWidth: 0, width: '0px',
-                            }}
-                            autoCorrect="off"
-                            autoCapitalize="off"
-                            spellCheck={false}
-                            aria-label="Terminal command input"
-                        />
-                        <span className="cursor" aria-hidden="true" />
-                    </span>
-                </div>
+                        <div ref={inputRowRef} className="flex items-center text-[13px] font-mono w-full">
+                            <span style={{ color: 'var(--fg-dim)', flexShrink: 0 }}>{SHELL_USER}@{SHELL_HOST}:{SHELL_DIR}</span>
+                            <span style={{ color: 'var(--fg)', flexShrink: 0 }}>$</span>
+                            <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', flex: 1, minWidth: 0, marginLeft: '1ch' }}>
+                                {/* Hidden sizer: measures exact pixel width of typed text */}
+                                <span
+                                    ref={sizerRef}
+                                    aria-hidden="true"
+                                    style={{
+                                        visibility: 'hidden', position: 'absolute', whiteSpace: 'pre',
+                                        pointerEvents: 'none', fontFamily: 'inherit', fontSize: 'inherit',
+                                        fontWeight: 'inherit', letterSpacing: 'inherit', left: 0, top: 0,
+                                    }}
+                                >
+                                    {input}
+                                </span>
+                                <input
+                                    ref={inputRef}
+                                    value={input}
+                                    onChange={e => setInput(e.target.value)}
+                                    onKeyDown={handleKey}
+                                    onFocus={() => setIsFocused(true)}
+                                    onBlur={() => setIsFocused(false)}
+                                    className="bg-transparent outline-none border-none"
+                                    style={{
+                                        color: 'var(--fg)',
+                                        caretColor: 'transparent',
+                                        fontFamily: 'inherit', fontSize: 'inherit', fontWeight: 'inherit',
+                                        letterSpacing: 'inherit', padding: 0, margin: 0, minWidth: 0, width: '0px',
+                                    }}
+                                    autoCorrect="off"
+                                    autoCapitalize="off"
+                                    spellCheck={false}
+                                    aria-label="Terminal command input"
+                                />
+                                <span className="cursor" aria-hidden="true" />
+                            </span>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
+        </>
     );
 }
 

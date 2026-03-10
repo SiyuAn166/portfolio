@@ -19,10 +19,10 @@
         }
     },
     "commandStrings": {
-        "identity": "$ whoami --verbose",
-        "experience": "$ cat ~/experience",
-        "projects": "$ ls -la ~/projects",
-        "skills": "$ stats --visualize --skills"
+        "identity": "whoami --verbose",
+        "experience": "visualize --format chain ~/experience",
+        "projects": "ls -la ~/projects",
+        "skills": "stats --visualize --skills"
     },
     "identity": {
         "title": "Siyu An",
@@ -84,17 +84,18 @@
     ],
     "projects": [
         {
-            "name": "ONYX_PROTOCOL",
-            "version": "v2.1.0",
+            "name": "GOARC_MCP",
+            "version": "v0.1.0",
             "status": "ACTIVE",
-            "description": "Decentralized peer-to-peer data synchronization engine built with Rust. Handles 1.2M operations per second with zero packet loss.",
+            "description": "GoArc is an architectural-aware Go static analysis server built on the Model Context Protocol (MCP). It gives AI assistants a `full-project radar` — deep visibility into package topology, call graphs, and architectural rules — so they can perform safe, informed refactoring across large Go codebases.",
             "tags": [
-                "Rust_Lang",
-                "WebRTC",
-                "P2P"
+                "Go_Lang",
+                "Static_Analysis",
+                "Architecture_Governance",
+                "Graph_Theory"
             ],
             "license": "MIT_License",
-            "url": "https://github.com"
+            "url": "https://github.com/SiyuAn166/goarc-mcp"
         },
         {
             "name": "HELIX_ORM",

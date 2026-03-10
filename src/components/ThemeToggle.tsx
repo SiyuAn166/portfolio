@@ -13,22 +13,6 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
             title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
         >
-            {/* Label above the switch */}
-            <span className="text-bright text-[10px] font-black uppercase tracking-[0.18em] leading-none"
-                style={{ opacity: 0.3 }}
-            >
-                PWR
-            </span>
-            {/* Track */}
-            <div className="power-switch-track w-9 h-[18px] flex items-center px-0.5">
-                {/* Thumb */}
-                <div
-                    className="power-switch-thumb w-3 h-3"
-                    style={{
-                        transform: isDark ? 'translateX(18px)' : 'translateX(0)',
-                    }}
-                />
-            </div>
             {/* Mode indicator below */}
             <span className="text-accent text-[9px] font-black uppercase tracking-widest leading-none"
                 style={{ opacity: 0.5 }}

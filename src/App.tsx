@@ -78,7 +78,7 @@ function App() {
             }}
             aria-label="Toggle theme"
           >
-            [ {theme === 'dark' ? 'LITE' : 'DARK'} ]
+            {theme === 'dark' ? 'LITE' : 'DARK'}
           </button>
         </div>
       </header>
@@ -97,28 +97,28 @@ function App() {
               userIP={userIP}
             />
             <CommandReveal
-              command={data.commandStrings?.identity ?? "$ whoami --verbose"}
+              command={data.commandStrings?.identity ?? "whoami --verbose"}
               active={revealIndex >= 0}
               onComplete={() => setRevealIndex(1)}
             >
               <IdentitySection identity={data.identity} experience={data.experience} />
             </CommandReveal>
             <CommandReveal
-              command={data.commandStrings?.experience ?? "$ ls -la /vol/experience"}
+              command={data.commandStrings?.experience ?? "ls -la /vol/experience"}
               active={revealIndex >= 1}
               onComplete={() => setRevealIndex(2)}
             >
               <ExperienceSection entries={data.experience} />
             </CommandReveal>
             <CommandReveal
-              command={data.commandStrings?.projects ?? "$ ls -la /sys/projects"}
+              command={data.commandStrings?.projects ?? "ls -la /sys/projects"}
               active={revealIndex >= 2}
               onComplete={() => setRevealIndex(3)}
             >
               <ProjectsSection projects={data.projects} />
             </CommandReveal>
             <CommandReveal
-              command={data.commandStrings?.skills ?? "$ stats --visualize --skills"}
+              command={data.commandStrings?.skills ?? "stats --visualize --skills"}
               active={revealIndex >= 3}
               onComplete={() => setRevealIndex(4)}
             >

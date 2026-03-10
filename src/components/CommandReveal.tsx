@@ -74,6 +74,7 @@ export function CommandReveal({
         <>
             <div className="text-[13px] mb-6 font-mono">
                 <span style={{ color: 'var(--fg-dim)' }}>{prompt}</span>
+                <span style={{ color: 'var(--fg)' }}>$ </span>
                 <span style={{ color: 'var(--fg)' }}>{typed}</span>
                 {!showResult && <span className="cursor" />}
             </div>

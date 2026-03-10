@@ -1,0 +1,23 @@
+name: Sync data.json to Gist
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'public/data.json'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload data.json to Gist
+        uses: exuanbo/actions-deploy-gist@v1
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: 5fa69f351f32a74cbe65c388278ac597
+          gist_file_name: data.json
+          file_path: public/data.json
