@@ -12,14 +12,14 @@
             "whoami": "SIYU AN // SOFTWARE ENGINEER // PLATFORM & CLOUD OPS",
             "clear": "__CLEAR__",
             "contact": "→  linkedin.com/in/siyu-an-bc",
-            "social": "→  github.com/siyuan-an",
+            "social": "→  github.com/siyuan166",
             "pwd": "/home/guest/termfolio",
             "ls": "bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  srv  sys  tmp  usr  var",
             "uname": "Linux termfolio 6.2.0-x86_64 #1 SMP x86_64 GNU/Linux"
         }
     },
     "commandStrings": {
-        "identity": "whoami --verbose",
+        "identity": "whoami",
         "experience": "visualize --format chain ~/experience",
         "projects": "ls -la ~/projects",
         "skills": "stats --visualize --skills"

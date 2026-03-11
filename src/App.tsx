@@ -52,6 +52,7 @@ function App() {
           padding: '12px 1rem',
           maxWidth: '80rem',
           boxSizing: 'border-box',
+          userSelect: 'none',
         }}
       >
         {/* Left: SSH info */}
@@ -101,7 +102,7 @@ function App() {
               active={revealIndex >= 0}
               onComplete={() => setRevealIndex(1)}
             >
-              <IdentitySection identity={data.identity} experience={data.experience} />
+              <IdentitySection identity={data.identity} experience={data.experience} meta={data.meta} />
             </CommandReveal>
             <CommandReveal
               command={data.commandStrings?.experience ?? "ls -la /vol/experience"}

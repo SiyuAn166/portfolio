@@ -98,7 +98,7 @@ function ChainConnector() {
             style={{ color: BOX_CLR }}
         >
             <span>│</span>
-            <span>▲</span>
+            <span>│</span>
             <span>│</span>
         </div>
     );
@@ -213,8 +213,6 @@ function EntryBlock({ entry, index }: EntryBlockProps) {
                             href={entry.researchUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="underline"
-                            style={{ color: 'var(--info)' }}
                             onClick={e => e.stopPropagation()}
                         >
                             EXTERNAL_LINK ↗

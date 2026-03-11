@@ -1,56 +1,77 @@
-import { useState } from 'react';
-import type { ExperienceEntry, Identity } from '../types';
+import { ASCII_ART } from '../config/ascii';
+import type { ExperienceEntry, Identity, Meta } from '../types';
 
 interface IdentitySectionProps {
     identity: Identity;
     experience: ExperienceEntry[];
+    meta?: Meta;
 }
 
-export function IdentitySection({ identity, experience }: IdentitySectionProps) {
-    const [expanded, setExpanded] = useState(false);
+export function IdentitySection({ identity, experience, meta }: IdentitySectionProps) {
     const currentRole = experience.find(e => e.current)?.title ?? 'Software Engineer';
-    const bioPreview = identity.tagline.length > 120
-        ? identity.tagline.slice(0, 120) + '...'
-        : identity.tagline;
+
+    // Extract contact links from meta.commands
+    const github = meta?.commands?.social?.replace('→', '').trim() ?? 'github.com/siyuan-an';
+    const linkedin = meta?.commands?.contact?.replace('→', '').trim() ?? 'linkedin.com/in/siyu-an-bc';
+
+    // neofetch-style: "siyu" @ "termfolio"
+    const [namePart, hostPart] = identity.title.toLowerCase().replace(' ', '@termfolio').split('@') as [string, string];
+    const separator = '─'.repeat(`${namePart}@${hostPart}`.length + 1);
 
     return (
         <section>
-            <div className="text-[13px] font-mono space-y-1 mb-6">
-                <InfoRow label="IDENTITY" value={identity.title} bright />
-                <InfoRow label="RANK" value={currentRole} />
-                <InfoRow label="STATUS" value="OPEN_TO_OPPORTUNITIES" warn />
-                <InfoRow label="LOCATION" value="Vancouver, BC, Canada" />
+            <div className="flex flex-col md:flex-row gap-8 items-center md:items-stretch">
 
-                {/* Bio with expand/collapse */}
-                <div className="flex gap-2 overflow-hidden">
-                    <span
-                        className="flex-shrink-0 w-24 uppercase tracking-wider"
-                        style={{ color: 'var(--fg-dim)', opacity: 0.55 }}
+                {/* ── Left: ASCII mountain art ── */}
+                <div className="w-full md:w-auto flex justify-center md:justify-start md:items-center flex-shrink-0">
+                    <pre
+                        aria-label="ASCII block letters"
+                        style={{
+                            color: 'var(--info)',
+                            fontFamily: 'inherit',
+                            fontSize: '13px',
+                            lineHeight: '1.2',
+                            userSelect: 'none',
+                            margin: 0,
+                        }}
                     >
-                        [BIO]
-                    </span>
-                    <div className="flex-1">
-                        <p style={{ color: 'var(--fg-dim)', wordBreak: 'break-word', whiteSpace: 'normal' }}>
-                            {expanded ? identity.tagline : bioPreview}
+                        {ASCII_ART}
+                    </pre>
+                </div>
+
+                {/* ── Vertical divider — desktop only ── */}
+                <div
+                    className="hidden md:block w-px self-stretch"
+                    style={{ background: 'var(--border)' }}
+                />
+
+                {/* ── Right: neofetch-style identity panel ── */}
+                <div className="flex-1 min-w-0 font-mono text-[13px] flex flex-col justify-center gap-[2px]">
+
+                    {/* user@host header */}
+                    <div className="font-bold" style={{ fontSize: '15px' }}>
+                        <span>{namePart}</span>
+                        <span>@</span>
+                        <span>termfolio</span>
+                    </div>
+
+                    {/* separator */}
+                    <div style={{ fontSize: '13px', marginBottom: '4px' }}>
+                        {separator}
+                    </div>
+
+                    {/* info rows */}
+                    <NeoRow label="Role" value={currentRole} />
+                    <NeoRow label="Status" value="OPEN_TO_OPPORTUNITIES" warn />
+                    <NeoRow label="Location" value="Vancouver, BC, Canada" />
+                    <NeoRow label="GitHub" value={github} link />
+                    <NeoRow label="LinkedIn" value={linkedin} link />
+
+                    {/* blank gap then bio */}
+                    <div style={{ marginTop: '10px', paddingTop: '8px', borderTop: '1px solid var(--border)' }}>
+                        <p style={{ lineHeight: '1.65', wordBreak: 'break-word' }}>
+                            {identity.tagline}
                         </p>
-                        {identity.tagline.length > 120 && (
-                            <button
-                                onClick={() => setExpanded(!expanded)}
-                                style={{
-                                    background: 'none',
-                                    border: 'none',
-                                    color: 'var(--fg-dim)',
-                                    cursor: 'pointer',
-                                    fontSize: '10px',
-                                    marginTop: '0.25rem',
-                                    textDecoration: 'underline',
-                                    padding: 0,
-                                }}
-                                aria-label={expanded ? 'Collapse bio' : 'Expand bio'}
-                            >
-                                [{expanded ? 'collapse' : 'expand'}]
-                            </button>
-                        )}
                     </div>
                 </div>
             </div>
@@ -58,35 +79,29 @@ export function IdentitySection({ identity, experience }: IdentitySectionProps) 
     );
 }
 
-function InfoRow({
-    label,
-    value,
-    bright,
-    warn,
-    faint,
-}: {
-    label: string;
-    value: string;
-    bright?: boolean;
-    warn?: boolean;
-    faint?: boolean;
+function NeoRow({ label, value, warn, link }: {
+    label: string; value: string; warn?: boolean; link?: boolean;
 }) {
-    const color = bright
-        ? 'var(--fg)'
-        : warn
-            ? 'var(--warn)'
-            : faint
-                ? 'var(--fg-dim)'
-                : 'var(--fg-dim)';
+    // neofetch style: "Label   : value" — label in cyan, colon dim, value in fg
+    const padded = label.padEnd(8); // longest label "LinkedIn" = 8 chars
     return (
-        <div className="flex gap-2 overflow-hidden">
-            <span
-                className="flex-shrink-0 w-24 uppercase tracking-wider"
-                style={{ color: 'var(--fg-dim)', opacity: 0.55 }}
-            >
-                [{label}]
+        <div className="flex" style={{ lineHeight: '1.7' }}>
+            <span style={{ whiteSpace: 'pre', flexShrink: 0, fontWeight: 700 }}>
+                {padded}
             </span>
-            <span style={{ color, wordBreak: 'break-word', whiteSpace: 'normal' }}>{value}</span>
+            <span style={{ whiteSpace: 'pre' }}>{' : '}</span>
+            {link ? (
+                <a
+                    href={`https://${value}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ wordBreak: 'break-all' }}
+                >
+                    {value} ↗
+                </a>
+            ) : (
+                <span style={{ wordBreak: 'break-all' }}>{value}</span>
+            )}
         </div>
     );
 }

@@ -222,7 +222,6 @@ src/
 │   └── useIntersectionObserver.ts  ← Scroll-reveal utility
 └── components/
     ├── ScanlineOverlay.tsx    ← Fixed CRT scanline effect
-    ├── AsciiNoise.tsx         ← Fixed canvas ASCII character noise
     ├── ThemeToggle.tsx        ← Top-right power switch button
     ├── CommandLine.tsx        ← Reusable $ command line with typewriter
     ├── RevealSection.tsx      ← IntersectionObserver fade-up wrapper

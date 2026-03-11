@@ -5,7 +5,7 @@ interface ProjectCardProps {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-    ACTIVE: 'var(--fg)',
+    ACTIVE: 'var(--ok)',
     STABLE: 'var(--info)',
     BETA: 'var(--warn)',
     ARCHIVED: 'var(--fg-dim)',
