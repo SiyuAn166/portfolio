@@ -90,7 +90,7 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
         if (e.key === 'ArrowDown') {
             e.preventDefault();
             if (historyIndex <= -1) return;
-            let newIndex = historyIndex - 1;
+            const newIndex = historyIndex - 1;
             setHistoryIndex(newIndex);
             if (newIndex === -1) {
                 setInput('');

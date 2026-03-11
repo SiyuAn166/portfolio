@@ -100,7 +100,7 @@ function NeoRow({ label, value, warn, link }: {
                     {value} ↗
                 </a>
             ) : (
-                <span style={{ wordBreak: 'break-all' }}>{value}</span>
+                <span style={{ wordBreak: 'break-all', color: warn ? 'var(--warning)' : undefined }}>{value}</span>
             )}
         </div>
     );
