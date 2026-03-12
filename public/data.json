@@ -7,15 +7,25 @@
         "bannerSystem": "Termfolio OS 6.1.0-lts x86_64",
         "copyright": "© 2026 TERMFOLIO // TERMINAL INTERFACE",
         "location": "Loc: 49.2827° N, 123.1207° W // Enc: AES-256-GCM",
+        "contactLinks": [
+            {
+                "label": "Email",
+                "value": "siyu.an166@gmail.com"
+            },
+            {
+                "label": "LinkedIn",
+                "value": "linkedin.com/in/siyu-an-bc"
+            }
+        ],
         "commands": {
-            "help": "Available commands: help, whoami, clear, contact, social, pwd, ls, date, uname, echo",
+            "help": "Available commands: help, whoami, clear, contact, social, pwd, ls, date, uname, echo, exit",
             "whoami": "SIYU AN // SOFTWARE ENGINEER // PLATFORM & CLOUD OPS",
             "clear": "__CLEAR__",
-            "contact": "→  linkedin.com/in/siyu-an-bc",
             "social": "→  github.com/siyuan166",
-            "pwd": "/home/guest/termfolio",
+            "pwd": "/home/guest",
             "ls": "bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  srv  sys  tmp  usr  var",
-            "uname": "Linux termfolio 6.2.0-x86_64 #1 SMP x86_64 GNU/Linux"
+            "uname": "Linux termfolio 6.2.0-x86_64 #1 SMP x86_64 GNU/Linux",
+            "exit": "logout"
         }
     },
     "commandStrings": {

@@ -10,9 +10,10 @@ interface IdentitySectionProps {
 export function IdentitySection({ identity, experience, meta }: IdentitySectionProps) {
     const currentRole = experience.find(e => e.current)?.title ?? 'Software Engineer';
 
-    // Extract contact links from meta.commands
+    // Extract contact links from meta
     const github = meta?.commands?.social?.replace('→', '').trim() ?? 'github.com/siyuan-an';
-    const linkedin = meta?.commands?.contact?.replace('→', '').trim() ?? 'linkedin.com/in/siyu-an-bc';
+    const email = meta?.contactLinks?.find(link => link.label === 'Email')?.value ?? 'siyu.an.dev@gmail.com';
+    const linkedin = meta?.contactLinks?.find(link => link.label === 'LinkedIn')?.value ?? 'linkedin.com/in/siyu-an-bc';
 
     // neofetch-style: "siyu" @ "termfolio"
     const [namePart, hostPart] = identity.title.toLowerCase().replace(' ', '@termfolio').split('@') as [string, string];
@@ -64,6 +65,7 @@ export function IdentitySection({ identity, experience, meta }: IdentitySectionP
                     <NeoRow label="Role" value={currentRole} />
                     <NeoRow label="Status" value="OPEN_TO_OPPORTUNITIES" warn />
                     <NeoRow label="Location" value="Vancouver, BC, Canada" />
+                    <NeoRow label="Email" value={email} link emails />
                     <NeoRow label="GitHub" value={github} link />
                     <NeoRow label="LinkedIn" value={linkedin} link />
 
@@ -79,8 +81,8 @@ export function IdentitySection({ identity, experience, meta }: IdentitySectionP
     );
 }
 
-function NeoRow({ label, value, warn, link }: {
-    label: string; value: string; warn?: boolean; link?: boolean;
+function NeoRow({ label, value, warn, link, emails }: {
+    label: string; value: string; warn?: boolean; link?: boolean; emails?: boolean;
 }) {
     // neofetch style: "Label   : value" — label in cyan, colon dim, value in fg
     const padded = label.padEnd(8); // longest label "LinkedIn" = 8 chars
@@ -92,12 +94,12 @@ function NeoRow({ label, value, warn, link }: {
             <span style={{ whiteSpace: 'pre' }}>{' : '}</span>
             {link ? (
                 <a
-                    href={`https://${value}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={emails ? `mailto:${value}` : `https://${value}`}
+                    target={emails ? undefined : "_blank"}
+                    rel={emails ? undefined : "noopener noreferrer"}
                     style={{ wordBreak: 'break-all' }}
                 >
-                    {value} ↗
+                    {value} {emails ? '' : '↗'}
                 </a>
             ) : (
                 <span style={{ wordBreak: 'break-all', color: warn ? 'var(--warning)' : undefined }}>{value}</span>

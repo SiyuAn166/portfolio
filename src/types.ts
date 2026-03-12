@@ -13,6 +13,8 @@ export interface Meta {
     copyright: string;
     /** Location + crypto shown in footer, e.g. "Loc: 49.28° N, 123.12° W // Enc: AES-256-GCM" */
     location: string;
+    /** Contact links configurable array */
+    contactLinks?: Array<{ label: string; value: string }>;
     /** Terminal commands configuration (optional) */
     commands?: Record<string, string>;
 }

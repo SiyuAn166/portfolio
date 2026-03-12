@@ -6,44 +6,30 @@ const SHELL_HOST = 'termfolio';
 const SHELL_DIR = '~';
 
 const DEFAULT_COMMANDS: Record<string, string | ((input: string) => string)> = {
-    help: 'Available commands: help, whoami, clear, contact, social, pwd, ls, date, uname, echo, exit',
-    whoami: 'SIYU AN // SOFTWARE ENGINEER // PLATFORM & CLOUD OPS',
-    clear: '__CLEAR__',
-    contact: '→  linkedin.com/in/siyu-an-bc',
-    social: '→  github.com/siyuan-an',
-    pwd: '/home/guest/termfolio',
-    ls: 'bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  srv  sys  tmp  usr  var',
-    uname: 'Linux termfolio 6.2.0-x86_64 #1 SMP x86_64 GNU/Linux',
     date: () => new Date().toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', year: 'numeric' }),
     echo: (input: string) => {
         const args = input.replace(/^echo\s*/i, '');
         return args;
     },
-    exit: 'logout',
 };
 
-/** CSS for top-left corner triangle indicator */
-const TRIANGLE_STYLE = `
-  :root[data-theme='dark'] .input-container-active::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background: rgba(250, 250, 246, 0.3);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
+/** CSS for cursor indicator - solid block when focused, hollow block when blurred */
+const CURSOR_STYLE = `
+  .cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
   }
   
-  :root[data-theme='light'] .input-container-active::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    background: rgba(20, 30, 45, 0.3);
-    clip-path: polygon(0 0, 100% 0, 0 100%);
+  .cursor.active {
+    background-color: var(--fg);
+  }
+  
+  .cursor.inactive {
+    border: 1px solid var(--fg);
+    background-color: transparent;
   }
 `;
 
@@ -137,7 +123,14 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
         }
 
         let output = '';
-        if (cmdName in COMMANDS) {
+        if (cmdName === 'contact') {
+            // Always use contactLinks if available, ignore commands.contact
+            if (meta?.contactLinks) {
+                output = meta.contactLinks.map(link => `→ ${link.label}: ${link.value}`).join('\n');
+            } else {
+                output = 'No contact information available';
+            }
+        } else if (cmdName in COMMANDS) {
             const val = COMMANDS[cmdName];
             output = typeof val === 'function' ? val(cmd) : val;
         } else if (cmd) {
@@ -151,10 +144,10 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
 
     return (
         <>
-            <style>{TRIANGLE_STYLE}</style>
-            {/* Outer container with top-left corner triangle on focus */}
+            <style>{CURSOR_STYLE}</style>
+            {/* Outer container */}
             <div
-                className={`w-full transition-all duration-300 relative ${isFocused ? 'input-container-active' : ''}`}
+                className="w-full transition-all duration-300"
                 style={{
                     width: '100%',
                     background: 'var(--bg)',
@@ -175,7 +168,11 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
                                             <span style={{ color: 'var(--fg)' }}>$ </span>
                                             <span style={{ color: 'var(--fg)' }}>{h.cmd}</span>
                                         </p>
-                                        {h.output && <p style={{ color: 'var(--fg)' }}>{h.output}</p>}
+                                        {h.output && (
+                                            <pre style={{ color: 'var(--fg)', margin: 0, whiteSpace: 'pre-wrap', wordWrap: 'break-word', fontFamily: 'inherit' }}>
+                                                {h.output}
+                                            </pre>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -216,7 +213,7 @@ export function TerminalInput({ meta }: { meta?: Meta }) {
                                     spellCheck={false}
                                     aria-label="Terminal command input"
                                 />
-                                <span className="cursor" aria-hidden="true" />
+                                <span className={`cursor ${isFocused ? 'active' : 'inactive'}`} aria-hidden="true" />
                             </span>
                         </div>
                     </div>
